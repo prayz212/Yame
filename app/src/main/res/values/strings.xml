@@ -1,0 +1,10 @@
+<resources>
+    <!-- App name -->
+    <string name="app_name">Yame</string>
+
+    <!-- Navigation Item names -->
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_more">More</string>
+    <string name="title_cart">Cart</string>
+</resources>

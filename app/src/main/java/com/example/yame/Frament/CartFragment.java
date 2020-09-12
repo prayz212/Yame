@@ -19,3 +19,5 @@ public class CartFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 }
+
+//Tri's Task

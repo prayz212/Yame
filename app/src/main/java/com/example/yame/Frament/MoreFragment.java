@@ -19,3 +19,5 @@ public class MoreFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_more, container, false);
     }
 }
+
+//Phu's Task

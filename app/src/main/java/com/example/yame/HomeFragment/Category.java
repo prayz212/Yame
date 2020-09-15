@@ -5,8 +5,16 @@ import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
 import java.util.List;
 
-public class Category extends ExpandableGroup<Type> {
-    public Category(String title, List<Type> items) {
-        super(title, items);
+public class Category extends CustomExpandableGroup {
+
+    private int imgRes;
+
+    public Category(String title, int img, List<Type> items) {
+        super(title, img, items);
+        this.imgRes = img;
+    }
+
+    public int getImgRes() {
+        return imgRes;
     }
 }

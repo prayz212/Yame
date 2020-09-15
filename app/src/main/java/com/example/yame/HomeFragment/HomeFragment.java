@@ -47,32 +47,32 @@ public class HomeFragment extends Fragment {
 
         List<Type> tshirts = new ArrayList<>();
 
-        tshirts.add(new Type(getString(R.string.tshirt_1)));
-        tshirts.add(new Type(getString(R.string.tshirt_2)));
-        tshirts.add(new Type(getString(R.string.tshirt_3)));
+        tshirts.add(new Type(getString(R.string.tshirt_1), 11));
+        tshirts.add(new Type(getString(R.string.tshirt_2), 12));
+        tshirts.add(new Type(getString(R.string.tshirt_3), 13));
 
         /*----------------------*/
 
         List<Type> coats = new ArrayList<>();
 
-        coats.add(new Type(getString(R.string.coat_1)));
-        coats.add(new Type(getString(R.string.coat_2)));
-        coats.add(new Type(getString(R.string.coat_3)));
-        coats.add(new Type(getString(R.string.coat_4)));
+        coats.add(new Type(getString(R.string.coat_1), 21));
+        coats.add(new Type(getString(R.string.coat_2), 22));
+        coats.add(new Type(getString(R.string.coat_3), 23));
+        coats.add(new Type(getString(R.string.coat_4), 24));
 
         /*----------------------*/
 
         List<Type> shirts = new ArrayList<>();
 
-        shirts.add(new Type(getString(R.string.shirt_1)));
-        shirts.add(new Type(getString(R.string.shirt_1)));
+        shirts.add(new Type(getString(R.string.shirt_1), 31));
+        shirts.add(new Type(getString(R.string.shirt_1), 32));
 
         /*----------------------*/
-        categoryList.add(new Category(getString(R.string.category_1), tshirts));
-        categoryList.add(new Category(getString(R.string.category_2), coats));
-        categoryList.add(new Category(getString(R.string.category_3), shirts));
+        categoryList.add(new Category(getString(R.string.category_1), R.drawable.demo_img, tshirts));
+        categoryList.add(new Category(getString(R.string.category_2), R.drawable.demo_img, coats));
+        categoryList.add(new Category(getString(R.string.category_3), R.drawable.demo_img, shirts));
 
-        TypeAdapter adapter = new TypeAdapter(categoryList);
+        TypeAdapter adapter = new TypeAdapter(categoryList, recyclerView);
         recyclerView.setAdapter(adapter);
 
     }

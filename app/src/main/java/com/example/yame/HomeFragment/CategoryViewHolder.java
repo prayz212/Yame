@@ -20,7 +20,7 @@ public class CategoryViewHolder extends GroupViewHolder {
     }
 
     public void bind(Category category) {
-        mImageview.setImageResource(R.drawable.demo_img);
+        mImageview.setImageResource(category.getImgRes());
         mTextview.setText(category.getTitle());
     }
 }

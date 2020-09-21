@@ -34,4 +34,17 @@
     <string name="shirt_1">Áo sơ mi tay ngắn</string>
     <string name="shirt_2">Áo sơ mi tay dài</string>
 
+    <!-- Text buttons, fragment_more -->
+    <string name="btn_login">Đăng ký | Tạo tài khoản</string>
+    <string name="btn_notifications">Thông báo</string>
+    <string name="btn_stores">Cửa hàng</string>
+    <string name="btn_languages_countries">Ngôn ngữ và Quốc gia</string>
+    <string name="btn_help">Giúp đỡ</string>
+
+    <!-- ImageView contentDescription, fragment_more-->
+    <string name="imgView_fragment_more">Ảnh...</string>
+
+    <!-- App version -->
+    <string name="version">Phiên bản 1.0.0</string>
+
 </resources>

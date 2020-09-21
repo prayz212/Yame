@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.example.yame.Frament.CartFragment;
 import com.example.yame.HomeFragment.HomeFragment;
-import com.example.yame.Frament.MoreFragment;
+import com.example.yame.MoreFragment.MoreFragment;
 import com.example.yame.Frament.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

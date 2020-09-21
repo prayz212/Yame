@@ -1,19 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_light"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/image_view_top"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
+        android:src="@drawable/demo_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/imgView_fragment_more" />
+
+    <Button
+        android:id="@+id/btn_login"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_baseline_account_circle_24"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:text="@string/btn_login"
+        android:textColor="@android:color/darker_gray"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_view_top" />
+
+    <Button
+        android:id="@+id/btn_notifications"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_baseline_notifications_24"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:text="@string/btn_notifications"
+        android:textColor="@android:color/darker_gray"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/btn_notifications" />
+
+    <Button
+        android:id="@+id/btn_stores"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_baseline_store_24"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:text="@string/btn_stores"
+        android:textColor="@android:color/darker_gray"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
+        android:id="@+id/btn_languages_countries"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_baseline_language_24"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:text="@string/btn_languages_countries"
+        android:textColor="@android:color/darker_gray"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_stores" />
+
+    <Button
+        android:id="@+id/btn_help"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_baseline_help_24"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:text="@string/btn_help"
+        android:textColor="@android:color/darker_gray"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_languages_countries" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="More Fragment"
-        android:textSize="30sp"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="10dp"
+        android:paddingHorizontal="20dp"
+        android:text="@string/version"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_help" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

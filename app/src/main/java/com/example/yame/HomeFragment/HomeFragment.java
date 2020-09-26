@@ -74,7 +74,6 @@ public class HomeFragment extends Fragment {
 
         TypeAdapter adapter = new TypeAdapter(categoryList, recyclerView);
         recyclerView.setAdapter(adapter);
-
     }
 }
 

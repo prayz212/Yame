@@ -6,32 +6,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" >
+        android:layout_alignParentEnd="true"
+        android:background="@color/backgroundToolbar">
 
-        <androidx.appcompat.widget.Toolbar
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundToolbar">
+            android:text="Yame"
+            android:textSize="25sp"
+            android:textColor="@android:color/black"
+            android:fontFamily="@font/aquire_bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Yame"
-                android:textSize="30sp"
-                android:textColor="@android:color/black"
-                android:textAlignment="viewStart"
-                android:paddingStart="20dp"
-                android:fontFamily="@font/aquire_bold" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -39,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/appBar"
+        android:layout_below="@id/toolbar"
         android:layout_above="@+id/bottom_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

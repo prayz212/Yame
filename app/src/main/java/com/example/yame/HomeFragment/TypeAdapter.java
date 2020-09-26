@@ -1,20 +1,13 @@
 package com.example.yame.HomeFragment;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.yame.R;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.listeners.OnGroupClickListener;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class TypeAdapter extends ExpandableRecyclerViewAdapter<CategoryViewHolder, TypeViewHolder> implements OnGroupClickListener {
@@ -29,13 +22,13 @@ public class TypeAdapter extends ExpandableRecyclerViewAdapter<CategoryViewHolde
 
     @Override
     public CategoryViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-        groupView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_recyclerview_item, parent, false);
+        groupView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_home_recyclerview_item, parent, false);
         return new CategoryViewHolder(groupView);
     }
 
     @Override
     public TypeViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
-        childView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_recyclerview_subitem, parent, false);
+        childView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_home_recyclerview_subitem, parent, false);
         return new TypeViewHolder(childView);
     }
 

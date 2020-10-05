@@ -2,6 +2,11 @@ package com.example.yame.SearchFragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+<<<<<<< HEAD
+=======
+import android.view.Menu;
+import android.view.MenuInflater;
+>>>>>>> origin/master
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -12,21 +17,38 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.yame.R;
 
+=======
+import com.example.yame.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+>>>>>>> origin/master
 public class SearchFragment extends Fragment {
 
     private View view;
     private SearchView searchView;
+<<<<<<< HEAD
     private RecyclerView recyclerView;
     private List<GroupItem> group;
+=======
+    private RecyclerView searchRecyclerView;
+    private List<GroupItem> groupItemList;
+>>>>>>> origin/master
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
         view = inflater.inflate(R.layout.fragment_search, container, false);
 
         initViews();
@@ -35,6 +57,7 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
+<<<<<<< HEAD
     private void initData() {
 
         group = new ArrayList<>();
@@ -59,3 +82,71 @@ public class SearchFragment extends Fragment {
 }
 
 //Thinh's Task
+=======
+    private void initViews() {
+        searchView = view.findViewById(R.id.searchView);
+        searchRecyclerView = view.findViewById(R.id.searchRecyclerView);
+        searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void initData() {
+        groupItemList = new ArrayList<>();
+
+        /*----------------------*/
+        List<SubItem> tshirts = new ArrayList<>();
+
+        tshirts.add(new SubItem("Áo ngắn tay", 111));
+        tshirts.add(new SubItem("Áo dài tay", 112));
+        tshirts.add(new SubItem("Áo có cổ", 113));
+        tshirts.add(new SubItem("Áo ba lỗ", 114));
+
+        /*----------------------*/
+
+        List<SubItem> dressshirts = new ArrayList<>();
+
+        dressshirts.add(new SubItem("Sơ mi nam", 211));
+        dressshirts.add(new SubItem("Sơ mi nữ", 212));
+        dressshirts.add(new SubItem("Sơ mi tay dài", 213));
+        dressshirts.add(new SubItem("Sơ mi tay ngắn", 214));
+
+        /*----------------------*/
+
+        List<SubItem> coats = new ArrayList<>();
+
+        coats.add(new SubItem("Jacket", 311));
+        coats.add(new SubItem("Hoodie", 312));
+
+        /*----------------------*/
+
+        List<SubItem> trousers = new ArrayList<>();
+
+        trousers.add(new SubItem("Quân tây",411));
+        trousers.add(new SubItem("Quân jean",412));
+        trousers.add(new SubItem("Quân short",413));
+        trousers.add(new SubItem("Quân kaki",414));
+
+        /*----------------------*/
+
+        List<SubItem> accessories = new ArrayList<>();
+
+        accessories.add(new SubItem("Giày",511));
+        accessories.add(new SubItem("Nón",512));
+        accessories.add(new SubItem("Ví",513));
+        accessories.add(new SubItem("Thắt lưng",514));
+        accessories.add(new SubItem("Balo",515));
+        accessories.add(new SubItem("Túi đeo",516));
+
+        /*----------------------*/
+
+        groupItemList.add(new GroupItem("Áo", tshirts));
+        groupItemList.add(new GroupItem("Sơ mi", dressshirts));
+        groupItemList.add(new GroupItem("Áo khoác", coats));
+        groupItemList.add(new GroupItem("Quần", trousers));
+        groupItemList.add(new GroupItem("Phụ kiện", accessories));
+
+        Adapter adapter = new Adapter(groupItemList, searchRecyclerView);
+        searchRecyclerView.setAdapter(adapter);
+    }
+
+}
+>>>>>>> origin/master

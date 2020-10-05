@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.yame.R;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.listeners.OnGroupClickListener;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
@@ -15,24 +17,21 @@ public class Adapter extends ExpandableRecyclerViewAdapter<GroupVH, SubVH> imple
 
     private View groupView, childView;
     private RecyclerView recyclerView;
-    private int groupLayout, subLayout;
 
-    public Adapter(List<? extends ExpandableGroup> groups, RecyclerView recyclerView, int GroupLayout, int SubLayout) {
+    public Adapter(List<? extends ExpandableGroup> groups, RecyclerView recyclerView) {
         super(groups);
         this.recyclerView = recyclerView;
-        this.groupLayout = GroupLayout;
-        this.subLayout = SubLayout;
     }
 
     @Override
     public GroupVH onCreateGroupViewHolder(ViewGroup parent, int viewType) {
-        groupView = LayoutInflater.from(parent.getContext()).inflate(groupLayout, parent, false);
+        groupView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_search_recyclerview_item, parent, false);
         return new GroupVH(groupView);
     }
 
     @Override
     public SubVH onCreateChildViewHolder(ViewGroup parent, int viewType) {
-        childView = LayoutInflater.from(parent.getContext()).inflate(subLayout, parent, false);
+        childView = LayoutInflater.from(parent.getContext()).inflate(R.layout.expandable_search_recyclerview_subitem, parent, false);
         return new SubVH(childView);
     }
 

@@ -61,6 +61,8 @@ public class SearchFragment extends Fragment {
 
         dressshirts.add(new SubItem("Sơ mi nam", 211));
         dressshirts.add(new SubItem("Sơ mi nữ", 212));
+        dressshirts.add(new SubItem("Sơ mi tay dài", 213));
+        dressshirts.add(new SubItem("Sơ mi tay ngắn", 214));
 
         /*----------------------*/
 

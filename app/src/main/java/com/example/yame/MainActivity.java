@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.yame.Frament.CartFragment;
+import com.example.yame.CartFragment.CartFragment;
 import com.example.yame.HomeFragment.HomeFragment;
 import com.example.yame.MoreFragment.MoreFragment;
 import com.example.yame.SearchFragment.SearchFragment;

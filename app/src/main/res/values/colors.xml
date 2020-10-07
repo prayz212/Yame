@@ -9,4 +9,7 @@
 
     <!-- Toolbar Background Color -->
     <color name="backgroundToolbar">#f2f2f2</color>
+
+    <drawable name="option_on">#FFFFFF</drawable>
+    <drawable name="option_off">#CDCBCB</drawable>
 </resources>

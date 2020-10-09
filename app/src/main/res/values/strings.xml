@@ -1,6 +1,8 @@
 <resources>
     <!-- App name -->
     <string name="app_name">Yame</string>
+    <string name="total">Tổng tiền</string>
+    <string name="pay">Thanh toán</string>
 
     <!-- Navigation Item names -->
     <string name="title_home">Home</string>
@@ -10,29 +12,44 @@
 
     <!-- Categorys names -->
     <string name="category_1">Áo thun</string>
-    <string name="category_2">Áo khoác</string>
-    <string name="category_3">Áo sơ mi</string>
-    <string name="category_4">Quần dài</string>
+    <string name="category_2">Áo sơ mi</string>
+    <string name="category_3">Áo khoác</string>
+    <string name="category_4">Quần</string>
+    <string name="category_8">Phụ kiện</string>
+
     <string name="category_5">Quần short</string>
     <string name="category_6">Sandal - Dép</string>
     <string name="category_7">Balo - Túi</string>
-    <string name="category_8">Phụ kiện</string>
-    <string name="category_9">Nhu cầu</string>
 
     <!-- T-Shirt Item names -->
-    <string name="tshirt_1">Đang bán chạy</string>
-    <string name="tshirt_2">Mới nhất</string>
-    <string name="tshirt_3">Khuyến mãi</string>
+    <string name="tshirt_1">Áo ngắn tay</string>
+    <string name="tshirt_2">Áo dài tay</string>
+    <string name="tshirt_3">Áo có cổ</string>
+    <string name="tshirt_4">Áo ba lỗ</string>
 
     <!-- Coat Item names -->
-    <string name="coat_1">Áo hoodie</string>
-    <string name="coat_2">Áo khoác vải</string>
-    <string name="coat_3">Áo khoác da</string>
-    <string name="coat_4">Áo khoác trơn</string>
+    <string name="coat_1">Jacket</string>
+    <string name="coat_2">Hoodie</string>
 
-    <!-- Shirt Item names -->
-    <string name="shirt_1">Áo sơ mi tay ngắn</string>
-    <string name="shirt_2">Áo sơ mi tay dài</string>
+    <!-- Dressshirt Item names -->
+    <string name="dshirt_1">Sơ mi nam</string>
+    <string name="dshirt_2">Sơ mi nữ</string>
+    <string name="dshirt_3">Sơ mi tay dài</string>
+    <string name="dshirt_4">Sơ mi tay ngắn</string>
+
+    <!-- Trouser Item names -->
+    <string name="trouser_1">Quần tây</string>
+    <string name="trouser_2">Quần jean</string>
+    <string name="trouser_3">Quần short</string>
+    <string name="trouser_4">Quần kaki</string>
+
+    <!-- Accessories -->
+    <string name="accessory_1">Giầy</string>
+    <string name="accessory_2">Nón</string>
+    <string name="accessory_3">Ví</string>
+    <string name="accessory_4">Thắt lưng</string>
+    <string name="accessory_5">Balo</string>
+    <string name="accessory_6">Túi đeo</string>
 
     <!-- Text buttons, fragment_more -->
     <string name="btn_login">Đăng ký | Tạo tài khoản</string>

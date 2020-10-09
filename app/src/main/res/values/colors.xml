@@ -5,11 +5,11 @@
     <color name="colorAccent">#03DAC5</color>
 
     <!-- HomeFragment Color -->
-    <color name="backgroundHomeFragment">#f5f6fa</color>
+    <color name="background_color_fragment">#f5f6fa</color>
 
     <!-- Toolbar Background Color -->
     <color name="backgroundToolbar">#f2f2f2</color>
 
-    <drawable name="option_on">#FFFFFF</drawable>
-    <drawable name="option_off">#CDCBCB</drawable>
+    <drawable name="option_on">#f5f6fa</drawable>
+    <drawable name="option_off">#f5f6fa</drawable>
 </resources>

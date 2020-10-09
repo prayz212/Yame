@@ -9,24 +9,17 @@ public class Item {
     private int img;
     private String type;
     private String ID;
-    private float price;
+    private int unitPrice;
+    private int totalPrice;
+    private int quantity;
 
-    public Item(int img, String type, String ID, float price) {
+    public Item(int img, String type, String ID, int price, int quantity) {
         this.img = img;
         this.type = type;
         this.ID = ID;
-        this.price = price;
-    }
-
-    public static List<Item> generate(int num) {
-        List<Item> items = new ArrayList<>();
-        if(num < 1) {
-            return items;
-        }
-        for (int i = 1; i <= num; i++) {
-            items.add(new Item(R.drawable.demo_img_home_fragment, "T-shirt " + i, "ID T-shirt " + i, 100000));
-        }
-        return items;
+        this.unitPrice = price;
+        this.quantity = quantity;
+        this.totalPrice = unitPrice;
     }
 
     public int getImg() {
@@ -53,11 +46,27 @@ public class Item {
         this.ID = ID;
     }
 
-    public float getPrice() {
-        return price;
+    public int getPrice() {
+        return unitPrice;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setPrice(int price) {
+        this.unitPrice = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

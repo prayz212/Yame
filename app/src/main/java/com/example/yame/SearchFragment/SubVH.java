@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.yame.R;
-import com.example.yame.TypeActivitys.CoatHoodie;
+import com.example.yame.TypeActivitys.ProductActivity;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
 public class SubVH extends ChildViewHolder {
@@ -29,16 +29,16 @@ public class SubVH extends ChildViewHolder {
                     //chi la demo mo activity moi
                 switch (subItem.getId()) {
                     case 11:
-                        startNewActivity(CoatHoodie.class);
+                        startNewActivity(ProductActivity.class);
                         break;
                     case 21:
-                        startNewActivity(CoatHoodie.class);
+                        startNewActivity(ProductActivity.class);
                         break;
                     case 22:
-                        startNewActivity(CoatHoodie.class);
+                        startNewActivity(ProductActivity.class);
                         break;
                     case 23:
-                        startNewActivity(CoatHoodie.class);
+                        startNewActivity(ProductActivity.class);
                         break;
                 }
 

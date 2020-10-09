@@ -2,6 +2,8 @@ package com.example.yame.CartFragment;
 
 import android.content.Context;
 import android.media.Image;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +14,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.yame.R;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
     private Context context;
     private List<Item> items;
     private int layout;
+
+    private String totalPrice = "";
 
     public MyCartAdapter(Context context, List<Item> data, int layout) {
         this.context = context;
@@ -45,14 +54,18 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
         holder.tvItemsType.setText(item.getType());
         holder.tvItemsID.setText(item.getID());
         holder.imgItems.setImageResource(item.getImg());
-        holder.tvItemsPrice.setText(String.valueOf(item.getPrice()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "Đã click " + item.getType(),
-                        Toast.LENGTH_SHORT).show();
-            }
+        int total = item.getPrice() * item.getQuantity();
+        item.setTotalPrice(total);
+        totalPrice = formatCurrency(String.valueOf(total));
+        holder.tvItemsPrice.setText(totalPrice);
+
+        holder.quantityButton.setOnValueChangeListener((view, oldValue, newValue) -> {
+            item.setQuantity(newValue);
+            int newTotal = newValue * item.getPrice();
+            item.setTotalPrice(newTotal);
+            totalPrice = formatCurrency(String.valueOf(newTotal));
+            holder.tvItemsPrice.setText(totalPrice);
         });
     }
 
@@ -65,6 +78,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
 
         ImageView imgItems;
         TextView tvItemsType, tvItemsID, tvItemsPrice;
+        ElegantNumberButton quantityButton;
 
         public MyViewHolder(@NonNull View item) {
             super(item);
@@ -72,6 +86,27 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
             tvItemsType = item.findViewById(R.id.tvItemsType);
             tvItemsID = item.findViewById(R.id.tvItemsID);
             tvItemsPrice = item.findViewById(R.id.tvItemsPrice);
+            quantityButton = item.findViewById(R.id.numberButton);
         }
+    }
+
+    private String formatCurrency(String price) {
+        NumberFormat format = new DecimalFormat("#,##0.00");// #,##0.00 ¤ (¤:// Currency symbol)
+        format.setCurrency(Currency.getInstance(Locale.US));//Or default locale
+
+        price = (!TextUtils.isEmpty(price)) ? price : "0";
+        price = price.trim();
+        price = format.format(Double.parseDouble(price));
+        price = price.replaceAll(",", "\\.");
+
+        if (price.endsWith(".00")) {
+            int centsIndex = price.lastIndexOf(".00");
+            if (centsIndex != -1) {
+                price = price.substring(0, centsIndex);
+            }
+        }
+        price = String.format("%s đ", price);
+
+        return price;
     }
 }

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yame.R;
-import com.example.yame.SearchFragment.SubItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,53 +47,53 @@ public class HomeFragment extends Fragment {
 
         List<Type> tshirts = new ArrayList<>();
 
-        tshirts.add(new Type("Áo ngắn tay", 111));
-        tshirts.add(new Type("Áo dài tay", 112));
-        tshirts.add(new Type("Áo có cổ", 113));
-        tshirts.add(new Type("Áo ba lỗ", 114));
+        tshirts.add(new Type(getResources().getString(R.string.tshirt_1), 111));
+        tshirts.add(new Type(getResources().getString(R.string.tshirt_2), 112));
+        tshirts.add(new Type(getResources().getString(R.string.tshirt_3), 113));
+        tshirts.add(new Type(getResources().getString(R.string.tshirt_4), 114));
 
         /*----------------------*/
 
         List<Type> coats = new ArrayList<>();
 
-        coats.add(new Type("Jacket", 311));
-        coats.add(new Type("Hoodie", 312));
+        coats.add(new Type(getResources().getString(R.string.coat_1), 311));
+        coats.add(new Type(getResources().getString(R.string.coat_2), 312));
 
         /*----------------------*/
 
         List<Type> dressshirts = new ArrayList<>();
 
-        dressshirts.add(new Type("Sơ mi nam", 211));
-        dressshirts.add(new Type("Sơ mi nữ", 212));
-        dressshirts.add(new Type("Sơ mi tay dài", 213));
-        dressshirts.add(new Type("Sơ mi tay ngắn", 214));
+        dressshirts.add(new Type(getResources().getString(R.string.dshirt_1), 211));
+        dressshirts.add(new Type(getResources().getString(R.string.dshirt_2), 212));
+        dressshirts.add(new Type(getResources().getString(R.string.dshirt_3), 213));
+        dressshirts.add(new Type(getResources().getString(R.string.dshirt_4), 214));
 
         /*----------------------*/
 
         List<Type> trousers = new ArrayList<>();
 
-        trousers.add(new Type("Quân tây",411));
-        trousers.add(new Type("Quân jean",412));
-        trousers.add(new Type("Quân short",413));
-        trousers.add(new Type("Quân kaki",414));
+        trousers.add(new Type(getResources().getString(R.string.trouser_1),411));
+        trousers.add(new Type(getResources().getString(R.string.trouser_2),412));
+        trousers.add(new Type(getResources().getString(R.string.trouser_3),413));
+        trousers.add(new Type(getResources().getString(R.string.trouser_4),414));
 
         /*----------------------*/
 
         List<Type> accessories = new ArrayList<>();
 
-        accessories.add(new Type("Giày",511));
-        accessories.add(new Type("Nón",512));
-        accessories.add(new Type("Ví",513));
-        accessories.add(new Type("Thắt lưng",514));
-        accessories.add(new Type("Balo",515));
-        accessories.add(new Type("Túi đeo",516));
+        accessories.add(new Type(getResources().getString(R.string.accessory_1),511));
+        accessories.add(new Type(getResources().getString(R.string.accessory_2),512));
+        accessories.add(new Type(getResources().getString(R.string.accessory_3),513));
+        accessories.add(new Type(getResources().getString(R.string.accessory_4),514));
+        accessories.add(new Type(getResources().getString(R.string.accessory_5),515));
+        accessories.add(new Type(getResources().getString(R.string.accessory_6),516));
 
         /*----------------------*/
-        categoryList.add(new Category("Áo thun", R.drawable.ao_thun, tshirts));
-        categoryList.add(new Category("Áo sơ mi", R.drawable.ao_so_mi, dressshirts));
-        categoryList.add(new Category("Áo khoác", R.drawable.ao_khoac, coats));
-        categoryList.add(new Category("Quần", R.drawable.quan, trousers));
-        categoryList.add(new Category("Phụ kiện", R.drawable.phu_kien, accessories));
+        categoryList.add(new Category(getResources().getString(R.string.category_1), R.drawable.ao_thun, tshirts));
+        categoryList.add(new Category(getResources().getString(R.string.category_2), R.drawable.ao_so_mi, dressshirts));
+        categoryList.add(new Category(getResources().getString(R.string.category_3), R.drawable.ao_khoac, coats));
+        categoryList.add(new Category(getResources().getString(R.string.category_4), R.drawable.quan, trousers));
+        categoryList.add(new Category(getResources().getString(R.string.category_5), R.drawable.phu_kien, accessories));
 
         TypeAdapter adapter = new TypeAdapter(categoryList, recyclerView);
         recyclerView.setAdapter(adapter);

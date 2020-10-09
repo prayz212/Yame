@@ -2,9 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -45,4 +42,20 @@
         app:layout_constraintStart_toEndOf="@id/imgItems"
         android:layout_marginBottom="20dp"
         android:layout_marginStart="14dp"/>
+
+    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        android:id="@+id/numberButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        app:initialNumber="1"
+        app:finalNumber="20"
+        app:backGroundColor="#EBEBEC"
+        app:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        app:textSize="5sp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.yame.R;
 
 import java.text.DecimalFormat;

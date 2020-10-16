@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.yame.R;
-import com.example.yame.TypeActivitys.ProductActivity;
+import com.example.yame.Activitys.ProductListActivity.ProductActivity;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
 public class SubVH extends ChildViewHolder {

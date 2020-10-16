@@ -15,11 +15,7 @@
     <string name="category_2">Áo sơ mi</string>
     <string name="category_3">Áo khoác</string>
     <string name="category_4">Quần</string>
-    <string name="category_8">Phụ kiện</string>
-
-    <string name="category_5">Quần short</string>
-    <string name="category_6">Sandal - Dép</string>
-    <string name="category_7">Balo - Túi</string>
+    <string name="category_5">Phụ kiện</string>
 
     <!-- T-Shirt Item names -->
     <string name="tshirt_1">Áo ngắn tay</string>

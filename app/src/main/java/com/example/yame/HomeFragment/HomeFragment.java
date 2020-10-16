@@ -89,11 +89,11 @@ public class HomeFragment extends Fragment {
         accessories.add(new Type(getResources().getString(R.string.accessory_6),516));
 
         /*----------------------*/
-        categoryList.add(new Category(getResources().getString(R.string.category_1), R.drawable.ao_thun, tshirts));
-        categoryList.add(new Category(getResources().getString(R.string.category_2), R.drawable.ao_so_mi, dressshirts));
-        categoryList.add(new Category(getResources().getString(R.string.category_3), R.drawable.ao_khoac, coats));
-        categoryList.add(new Category(getResources().getString(R.string.category_4), R.drawable.quan, trousers));
-        categoryList.add(new Category(getResources().getString(R.string.category_5), R.drawable.phu_kien, accessories));
+        categoryList.add(new Category(getResources().getString(R.string.category_1), R.raw.ao_thun, tshirts));
+        categoryList.add(new Category(getResources().getString(R.string.category_2), R.raw.ao_so_mi, dressshirts));
+        categoryList.add(new Category(getResources().getString(R.string.category_3), R.raw.ao_khoac, coats));
+        categoryList.add(new Category(getResources().getString(R.string.category_4), R.raw.quan, trousers));
+        categoryList.add(new Category(getResources().getString(R.string.category_5), R.raw.phu_kien, accessories));
 
         TypeAdapter adapter = new TypeAdapter(categoryList, recyclerView);
         recyclerView.setAdapter(adapter);

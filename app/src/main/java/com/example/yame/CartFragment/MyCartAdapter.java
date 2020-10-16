@@ -1,20 +1,16 @@
 package com.example.yame.CartFragment;
 
 import android.content.Context;
-import android.media.Image;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.yame.ChangeCurrency;
 import com.example.yame.R;
 
 import java.text.DecimalFormat;
@@ -26,15 +22,19 @@ import java.util.Locale;
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
     private Context context;
-    private List<Item> items;
+    private List<BuyProduct> productList;
     private int layout;
 
-    private String totalPrice = "";
+    private CustomClickListener listener;
 
-    public MyCartAdapter(Context context, List<Item> data, int layout) {
+    public MyCartAdapter(Context context, List<BuyProduct> data, int layout) {
         this.context = context;
-        this.items = data;
+        this.productList = data;
         this.layout = layout;
+    }
+
+    public void setListener(CustomClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -50,63 +50,47 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        final Item item = items.get(position);
-        holder.tvItemsType.setText(item.getType());
-        holder.tvItemsID.setText(item.getID());
-        holder.imgItems.setImageResource(item.getImg());
+        final BuyProduct product = productList.get(position);
+        holder.tvProductName.setText(product.getName());
+        holder.tvProductID.setText(product.toStringID());
+        ChangeCurrency format = new ChangeCurrency();
+        holder.tvProductPrice.setText(format.formatCurrency(product.getUnitPrice()));
+        holder.imgProduct.setImageResource(product.getImg().get(0));
+        holder.quantityButton.setNumber(String.valueOf(product.getQuantity()));
 
-        int total = item.getPrice() * item.getQuantity();
-        item.setTotalPrice(total);
-        totalPrice = formatCurrency(String.valueOf(total));
-        holder.tvItemsPrice.setText(totalPrice);
+        product.setTotalPrice(product.getUnitPrice() * product.getQuantity());
 
         holder.quantityButton.setOnValueChangeListener((view, oldValue, newValue) -> {
-            item.setQuantity(newValue);
-            int newTotal = newValue * item.getPrice();
-            item.setTotalPrice(newTotal);
-            totalPrice = formatCurrency(String.valueOf(newTotal));
-            holder.tvItemsPrice.setText(totalPrice);
+
+            product.setQuantity(newValue);
+            int newTotal = newValue * product.getUnitPrice();
+            product.setTotalPrice(newTotal);
+
+            //update total price in cart fragment
+            if (listener != null) {
+                listener.onQuantityChange();
+            }
         });
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return productList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgItems;
-        TextView tvItemsType, tvItemsID, tvItemsPrice;
+        ImageView imgProduct;
+        TextView tvProductName, tvProductID, tvProductPrice;
         ElegantNumberButton quantityButton;
 
         public MyViewHolder(@NonNull View item) {
             super(item);
-            imgItems = item.findViewById(R.id.imgItems);
-            tvItemsType = item.findViewById(R.id.tvItemsType);
-            tvItemsID = item.findViewById(R.id.tvItemsID);
-            tvItemsPrice = item.findViewById(R.id.tvItemsPrice);
+            imgProduct = item.findViewById(R.id.imgItems);
+            tvProductName = item.findViewById(R.id.tvItemsType);
+            tvProductID = item.findViewById(R.id.tvItemsID);
+            tvProductPrice = item.findViewById(R.id.tvItemsPrice);
             quantityButton = item.findViewById(R.id.numberButton);
         }
-    }
-
-    private String formatCurrency(String price) {
-        NumberFormat format = new DecimalFormat("#,##0.00");// #,##0.00 ¤ (¤:// Currency symbol)
-        format.setCurrency(Currency.getInstance(Locale.US));//Or default locale
-
-        price = (!TextUtils.isEmpty(price)) ? price : "0";
-        price = price.trim();
-        price = format.format(Double.parseDouble(price));
-        price = price.replaceAll(",", "\\.");
-
-        if (price.endsWith(".00")) {
-            int centsIndex = price.lastIndexOf(".00");
-            if (centsIndex != -1) {
-                price = price.substring(0, centsIndex);
-            }
-        }
-        price = String.format("%s đ", price);
-
-        return price;
     }
 }

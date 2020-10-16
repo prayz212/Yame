@@ -12,4 +12,7 @@
 
     <drawable name="option_on">#f5f6fa</drawable>
     <drawable name="option_off">#f5f6fa</drawable>
+
+    <!-- Swipe delte color -->
+    <color name="red">#F44336</color>
 </resources>

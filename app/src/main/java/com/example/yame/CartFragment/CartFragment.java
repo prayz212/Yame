@@ -1,8 +1,10 @@
 package com.example.yame.CartFragment;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +12,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.yame.ChangeCurrency;
 import com.example.yame.R;
+import com.example.yame.Store;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -23,11 +31,13 @@ import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 
-public class CartFragment extends Fragment {
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
+public class CartFragment extends Fragment implements CustomClickListener {
 
     private View view;
     private RecyclerView recyclerView;
-    private List<Item> itemList;
+    private List<BuyProduct> buyProductList;
     private MyCartAdapter adapter;
     private TextView tvCountItem, tvTotal;
 
@@ -46,7 +56,8 @@ public class CartFragment extends Fragment {
     }
 
     private void handlerEvents() {
-
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void initView() {
@@ -56,13 +67,29 @@ public class CartFragment extends Fragment {
     }
 
     private void initData() {
-        itemList = new ArrayList<>();
+        buyProductList = new ArrayList<>();
+
+        //create list of image product
+        List<Integer> imgs = new ArrayList<>();
+        imgs.add(R.raw.cart_demo);
+        imgs.add(R.raw.cart_demo);
+        imgs.add(R.raw.cart_demo);
+        imgs.add(R.raw.cart_demo);
+
+        //create list of store have this product
+        List<Store> storeList = new ArrayList<>();
+        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
+        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
+        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
+        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
+
 
         for (int i = 0; i < 15; i++) {
-            itemList.add(new Item(R.drawable.cart_demo, "T-shirt " + i, "ID T-shirt " + i, 100000, 1));
+            buyProductList.add(new BuyProduct(imgs, "T-shirt " + i, i, 100000, 1, "This is product detail", "This is instruction paragraph", storeList));
         }
 
-        adapter = new MyCartAdapter(getContext(), itemList, R.layout.cart_custom_row_item);
+        adapter = new MyCartAdapter(getContext(), buyProductList, R.layout.cart_custom_row_item);
+        adapter.setListener(this);
     }
 
     private void config() {
@@ -73,38 +100,68 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
 
-        tvCountItem.setText("Giỏ hàng (" + itemList.size() + ")");
+        tvCountItem.setText("Giỏ hàng (" + buyProductList.size() + ")");
         calTotalPrice();
     }
 
     private void calTotalPrice() {
         int total = 0;
-        for (Item i : itemList) {
+        for (BuyProduct i : buyProductList) {
             total += i.getTotalPrice();
         }
 
-        tvTotal.setText(formatCurrency(String.valueOf(total)));
+        tvTotal.setText(ChangeCurrency.formatCurrency(total));
     }
 
-    private String formatCurrency(String price) {
-        NumberFormat format = new DecimalFormat("#,##0.00");// #,##0.00 ¤ (¤:// Currency symbol)
-        format.setCurrency(Currency.getInstance(Locale.US));//Or default locale
+    @Override
+    public void onQuantityChange() {
+        calTotalPrice();
+    }
 
-        price = (!TextUtils.isEmpty(price)) ? price : "0";
-        price = price.trim();
-        price = format.format(Double.parseDouble(price));
-        price = price.replaceAll(",", "\\.");
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
 
-        if (price.endsWith(".00")) {
-            int centsIndex = price.lastIndexOf(".00");
-            if (centsIndex != -1) {
-                price = price.substring(0, centsIndex);
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            int pos = viewHolder.getAdapterPosition();
+            BuyProduct item = buyProductList.get(pos);
+
+            switch (direction) {
+                case ItemTouchHelper.LEFT:
+                    //Delete item while swiped
+                    buyProductList.remove(pos);
+                    adapter.notifyItemRemoved(pos);
+
+                    //Snackbar to notify user item removed and let them undo if necessary
+                    Snackbar.make(recyclerView, "Đã xóa sản phẩm khỏi giỏ hàng", Snackbar.LENGTH_LONG)
+                            .setAction("Hoàn tác", v -> {
+                               buyProductList.add(pos, item);
+                               adapter.notifyItemInserted(pos);
+                            }).show();
+
+                    //update total price
+                    calTotalPrice();
+                    break;
             }
         }
-        price = String.format("%s đ", price);
 
-        return price;
-    }
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+
+            new RecyclerViewSwipeDecorator.Builder(getContext(), c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.red))
+                    .addSwipeLeftActionIcon(R.drawable.ic_delete)
+                    .addSwipeLeftLabel("Xóa")
+                    .setSwipeLeftLabelTextSize(TypedValue.COMPLEX_UNIT_SP, 20)
+                    .setSwipeLeftLabelColor(Color.WHITE)
+                    .create()
+                    .decorate();
+
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
 }
-
-//Tri's Task

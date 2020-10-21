@@ -59,13 +59,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         //open product detail activity
         holder.viewGroup.setOnClickListener((v) -> {
-            openProductDetailActivity();
+            openProductDetailActivity(product.getName(), ChangeCurrency.formatCurrency(product.getUnitPrice()));
         });
     }
 
-    private void openProductDetailActivity() {
+    private void openProductDetailActivity(String Name, String Price) {
         Intent intent = new Intent(context, DetailActivity.class);
-        intent.putExtra("from", "this is content of product");
+        intent.putExtra("Name", Name);
+        intent.putExtra("Price", Price);
         context.startActivity(intent);
     }
 

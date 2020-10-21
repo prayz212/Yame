@@ -40,14 +40,14 @@
     <string name="trouser_4">Quần kaki</string>
 
     <!-- Accessories -->
-    <string name="accessory_1">Giầy</string>
+    <string name="accessory_1">Giày</string>
     <string name="accessory_2">Nón</string>
     <string name="accessory_3">Ví</string>
     <string name="accessory_4">Thắt lưng</string>
     <string name="accessory_5">Balo</string>
     <string name="accessory_6">Túi đeo</string>
 
-    <!-- Text buttons, fragment_more -->
+    <!-- Text of buttons, fragment_more -->
     <string name="btn_login">Đăng ký | Tạo tài khoản</string>
     <string name="btn_notifications">Thông báo</string>
     <string name="btn_stores">Cửa hàng</string>
@@ -59,5 +59,11 @@
 
     <!-- App version -->
     <string name="version">Phiên bản 1.0.0</string>
+
+    <!-- Text of buttons, activity_detail -->
+    <string name="btnCart">Thêm vào giỏ hàng</string>
+    <string name="btnAvailableStore">Cửa hàng sẵn có</string>
+    <string name="btnDetails">Chi tiết sản phẩm</string>
+    <string name="btnInstruction">Hướng dẫn giặt giũ và bảo quản</string>
 
 </resources>

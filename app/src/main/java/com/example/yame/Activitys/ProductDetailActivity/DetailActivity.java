@@ -62,13 +62,13 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void expand(TextView tv, Button btn) {
-        // Dùng để xuất hiện các phần nội dung được ẩn
+        // Dùng để xuất hiện phần nội dung được ẩn
         if (tv.getVisibility() == View.GONE) {
             TransitionManager.beginDelayedTransition(cardViewExpand, new AutoTransition());
             tv.setVisibility(View.VISIBLE);
             btn.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0, R.drawable.ic_baseline_expand_less, 0);
         }
-        // Dùng để thu lại các phần nội dung đang hiển thị
+        // Dùng để thu lại các nội dung đang hiển thị
         else {
             TransitionManager.beginDelayedTransition(cardViewExpand, new AutoTransition());
             tv.setVisibility(View.GONE);

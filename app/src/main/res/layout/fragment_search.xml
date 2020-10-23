@@ -27,10 +27,10 @@
                 android:id="@+id/searchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:queryHint="Search here"
+                android:background="@android:color/white"
                 android:iconifiedByDefault="false"
                 android:queryBackground="@android:color/transparent"
-                android:background="@android:color/white" />
+                android:queryHint="Search here" />
 
         </androidx.cardview.widget.CardView>
 

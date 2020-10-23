@@ -66,4 +66,31 @@
     <string name="btnDetails">Chi tiết sản phẩm</string>
     <string name="btnInstruction">Hướng dẫn giặt giũ và bảo quản</string>
 
+    <!-- Text of account, store activity-->
+    <string name="tb_myAccount">Tài khoản</string>
+    <string name="txt_register">Create account</string>
+    <string name="txt_login">Registered customer</string>
+    <string name="txt_forgotPassword"><u>Forgot your password?</u></string>
+    <string name="btn_signIn">Sign in</string>
+    <string name="btn_createAccount">Create account</string>
+    <string name="tb_stores">Cửa hàng</string>
+
+    <!--    Location Store -->
+    <string name="Yame_1">YaMe Q.10: 770F, Sư Vạn Hạnh, P.12</string>
+    <string name="Yame_2">YaMe Q.10: 286, 3 tháng 2, P.12</string>
+    <string name="Yame_3">YaMe Q.5: 190, Nguyễn Trãi, P.3</string>
+    <string name="Yame_4">YaMe Q.6: 102 Hậu Giang</string>
+    <string name="Yame_5">YaMe Q.9: 114 Đỗ Xuân Hợp</string>
+    <string name="Yame_6">YaMe Q9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</string>
+    <string name="Yame_7">YaMe Q12: 290 Phan Văn Hớn, Q.12</string>
+    <string name="Yame_8">YaMe Q.Bình Thạnh: 138 Lê Văn Duyệt, P.1</string>
+    <string name="Yame_9">YaMe Tân Phú: 34 Nguyễn Sơn</string>
+    <string name="Yame_10">YaMe Tân Phú 2: 189 Hòa Bình</string>
+    <string name="Yame_11">YaMe Q.Bình Tân: 232 Lê Văn Quới</string>
+    <string name="Yame_12">YaMe Gò Vấp: 417, Quang Trung, P.10</string>
+    <string name="Yame_13">YaMe Gò Vấp 2: 1096 Quang Trung</string>
+    <string name="Yame_14">YaMe Hóc Môn: 39 Quang Trung, Thới Tam Thôn</string>
+    <string name="Yame_15">YaMe Thủ Đức: 336, Võ Văn Ngân, Q. Thủ Đức</string>
+    <string name="Yame_16">YaMe Q.7: 323 Huỳnh Tấn Phát</string>
+
 </resources>

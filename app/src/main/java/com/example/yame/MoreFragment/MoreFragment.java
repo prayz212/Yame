@@ -1,5 +1,6 @@
 package com.example.yame.MoreFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,13 +32,15 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
-                Toast.makeText(getActivity(), "Đăng ký",Toast.LENGTH_SHORT).show();
+                Intent intent_my_account = new Intent(getContext(), MyAccount.class);
+                startActivity(intent_my_account);
                 break;
             case R.id.btn_notifications:
                 Toast.makeText(getActivity(), "Thông báo",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_stores:
-                Toast.makeText(getActivity(), "Cửa hàng",Toast.LENGTH_SHORT).show();
+                Intent intent_store_location = new Intent(getContext(), StoreLocation.class);
+                startActivity(intent_store_location);
                 break;
             case R.id.btn_languages_countries:
                 Toast.makeText(getActivity(), "Ngôn ngữ",Toast.LENGTH_SHORT).show();

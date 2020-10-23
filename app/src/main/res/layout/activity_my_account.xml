@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MoreFragment.MyAccount">
+
+    <!-- Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarMyAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/backgroundToolbar">
+
+            <ImageButton
+                android:id="@+id/imgBtnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingEnd="10dp"
+                android:background="@null"
+                android:src="@drawable/ic_arrow_back" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/tb_myAccount"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:textAlignment="viewStart"
+                android:paddingStart="10dp"
+                android:fontFamily="monospace" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/appBarMyAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:id="@+id/title_login"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout_login"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/txt_login"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="viewStart"/>
+
+        <EditText
+            android:id="@+id/line_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title_login"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout_login"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:inputType="text"
+            android:hint="E-mail"/>
+
+        <EditText
+            android:id="@+id/line_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/line_email"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout_login"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:inputType="textPassword"
+            android:hint="Password"/>
+
+        <TextView
+            android:id="@+id/txt_forgotPassword"
+            app:layout_constraintTop_toBottomOf="@+id/line_password"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/txt_forgotPassword"
+            android:textSize="13sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="viewStart"/>
+        
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txt_forgotPassword"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:text="@string/btn_signIn"/>
+
+        <TextView
+            android:id="@+id/txt_createAccount"
+            app:layout_constraintTop_toBottomOf="@id/btnSignIn"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="@string/txt_register"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:textAlignment="viewStart"/>
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txt_createAccount"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:textAllCaps="false"
+            android:text="@string/btn_createAccount"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

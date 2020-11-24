@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.denzcoskun.imageslider.ImageSlider
+    android:id="@+id/fullScreenSlider"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:iss_auto_cycle="false"
+    app:iss_placeholder="@android:color/white"
+    app:iss_unselected_dot="@android:color/white"
+    app:iss_selected_dot="@android:color/white"
+    tools:context=".Activitys.ProductDetailActivity.ShowImageActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+</com.denzcoskun.imageslider.ImageSlider>

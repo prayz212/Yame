@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.yame.Activitys.ProductDetailActivity.DetailActivity;
-import com.example.yame.ChangeCurrency;
-import com.example.yame.Product;
+import com.example.yame.ProductDB;
 import com.example.yame.R;
 
 import java.util.List;
@@ -24,10 +24,11 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;
-    private List<Product> productList;
+
+    private List<ProductDB> productList;
     private int layout;
 
-    public CustomAdapter(Context context, List<Product> productList, int layout) {
+    public CustomAdapter(Context context, List<ProductDB> productList, int layout) {
         this.context = context;
         this.productList = productList;
         this.layout = layout;
@@ -45,12 +46,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.ViewHolder holder, int position) {
 
-        Product product = productList.get(position);
+        ProductDB product = productList.get(position);
 
-        holder.imageView.setImageResource(product.getImg().get(0));
+        Glide.with(context)
+                .load(product.getUrl())
+                .into(holder.imageView);
+
         holder.tvName.setText(product.getName());
 
-        holder.tvPrice.setText(ChangeCurrency.formatCurrency(product.getUnitPrice()));
+        holder.tvPrice.setText(String.valueOf(product.getPrice()));
+
 
         //add directly to cart fragment
         holder.imageButton.setOnClickListener((v) -> {
@@ -59,14 +64,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         //open product detail activity
         holder.viewGroup.setOnClickListener((v) -> {
-            openProductDetailActivity(product.getName(), ChangeCurrency.formatCurrency(product.getUnitPrice()));
+            openProductDetailActivity(product.getId());
         });
     }
 
-    private void openProductDetailActivity(String Name, String Price) {
+    private void openProductDetailActivity(long id) {
         Intent intent = new Intent(context, DetailActivity.class);
-        intent.putExtra("Name", Name);
-        intent.putExtra("Price", Price);
+        intent.putExtra("id", id);
         context.startActivity(intent);
     }
 

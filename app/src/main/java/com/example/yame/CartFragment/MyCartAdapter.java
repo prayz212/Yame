@@ -2,6 +2,7 @@ package com.example.yame.CartFragment;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.yame.CartProductDB;
 import com.example.yame.ChangeCurrency;
 import com.example.yame.R;
 
@@ -22,12 +26,12 @@ import java.util.Locale;
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 
     private Context context;
-    private List<BuyProduct> productList;
+    private List<CartProductDB> productList;
     private int layout;
 
     private CustomClickListener listener;
 
-    public MyCartAdapter(Context context, List<BuyProduct> data, int layout) {
+    public MyCartAdapter(Context context, List<CartProductDB> data, int layout) {
         this.context = context;
         this.productList = data;
         this.layout = layout;
@@ -50,20 +54,26 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        final BuyProduct product = productList.get(position);
+        final CartProductDB product = productList.get(position);
         holder.tvProductName.setText(product.getName());
-        holder.tvProductID.setText(product.toStringID());
-        ChangeCurrency format = new ChangeCurrency();
-        holder.tvProductPrice.setText(format.formatCurrency(product.getUnitPrice()));
-        holder.imgProduct.setImageResource(product.getImg().get(0));
-        holder.quantityButton.setNumber(String.valueOf(product.getQuantity()));
+        holder.tvProductID.setText("Mã sản phẩm: " + product.getId());
 
-        product.setTotalPrice(product.getUnitPrice() * product.getQuantity());
+        ChangeCurrency format = new ChangeCurrency();
+        holder.tvProductPrice.setText(format.formatCurrency(product.getPrice()));
+//        holder.imgProduct.setImageResource(product.getImg().get(0));
+
+        Glide.with(context)
+                .load(product.getUrl())
+                .into(holder.imgProduct);
+
+        holder.quantityButton.setNumber(String.valueOf(product.getQuanlity()));
+
+        product.setTotalPrice(product.getPrice() * product.getQuanlity());
 
         holder.quantityButton.setOnValueChangeListener((view, oldValue, newValue) -> {
 
-            product.setQuantity(newValue);
-            int newTotal = newValue * product.getUnitPrice();
+            product.setQuanlity(newValue);
+            int newTotal = newValue * product.getPrice();
             product.setTotalPrice(newTotal);
 
             //update total price in cart fragment

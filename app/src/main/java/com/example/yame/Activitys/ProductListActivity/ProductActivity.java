@@ -6,15 +6,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import com.example.yame.Product;
+import com.example.yame.ProductDB;
 import com.example.yame.R;
-import com.example.yame.Store;
+import com.example.yame.network.API;
+import com.example.yame.network.GetResponse;
+import com.example.yame.network.ProductDBApi;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -22,7 +28,11 @@ public class ProductActivity extends AppCompatActivity {
     private ImageButton btnBack;
     private RecyclerView mRecyclerView;
     private CustomAdapter mAdapter;
-    private List<Product> productList;
+
+
+    private List<ProductDB> productList;
+    private ProductDBApi api;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,35 @@ public class ProductActivity extends AppCompatActivity {
         config();
     }
 
+    private void getProduct() {
+        Call<GetResponse> call = api.getProduct(id);
+        call.enqueue(new Callback<GetResponse>() {
+            @Override
+            public void onResponse(Call<GetResponse> call, Response<GetResponse> response) {
+                if (response.isSuccessful()) {
+                    GetResponse result = response.body();
+
+                    if (result != null && result.status == 200) {
+                        List<ProductDB> products = result.data;
+
+                        productList.addAll(products);
+                        mAdapter.notifyItemRangeInserted(0, products.size());
+                    } else {
+                        Log.e("test", "Server fail: " + result.message);
+                    }
+                } else {
+                    Log.e("test", "response fail: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+    }
+
     private void initViews() {
         tvTitle = findViewById(R.id.tvTitle);
         btnBack = findViewById(R.id.imgBtnBack);
@@ -42,26 +81,6 @@ public class ProductActivity extends AppCompatActivity {
 
     private void initData() {
         productList = new ArrayList<>();
-
-        //create list of image product
-        List<Integer> imgs = new ArrayList<>();
-        imgs.add(R.raw.demo_product);
-        imgs.add(R.raw.demo_product);
-        imgs.add(R.raw.demo_product);
-        imgs.add(R.raw.demo_product);
-
-        //create list of store have this product
-        List<Store> storeList = new ArrayList<>();
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-
-
-        for (int i = 0; i < 15; i++) {
-            productList.add(new Product(imgs, "T-shirt " + i, i, 100000, 1, "This is product detail", "This is instruction paragraph", storeList));
-        }
-
         mAdapter = new CustomAdapter(this, productList, R.layout.product_custom_row);
     }
 
@@ -70,6 +89,8 @@ public class ProductActivity extends AppCompatActivity {
         String type;
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
+        id = intent.getIntExtra("id", -1);
+
         tvTitle.setText(type);
 
         //back to the previous activity
@@ -84,5 +105,7 @@ public class ProductActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new CustomDecoration(2, 2, true));
 
+        api = API.getProdcutDBApi();
+        getProduct();
     }
 }

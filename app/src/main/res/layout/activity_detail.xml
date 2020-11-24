@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".Activitys.ProductDetailActivity.DetailActivity">
 
@@ -55,15 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
-            <!-- for auto slide image -->
-            <!-- iss_auto_cycle='true' -->
-            <!-- app:iss_delay="0" -->
-            <!-- app:iss_period="1000" -->
             <com.denzcoskun.imageslider.ImageSlider
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
                 app:iss_auto_cycle="false"
                 android:id="@+id/imgProduct"
+                app:iss_placeholder="@android:color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -124,34 +122,6 @@
                     android:layout_height="wrap_content">
 
                     <Button
-                        android:id="@+id/btnAvailableStore"
-                        style="?android:borderlessButtonStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:drawableEnd="@drawable/ic_baseline_expand_more"
-                        android:background="@null"
-                        android:drawablePadding="10dp"
-                        android:layout_margin="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@string/btnAvailableStore"
-                        android:textColor="#000000"
-                        android:textAllCaps="false"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-
-                    <TextView
-                        android:id="@+id/tvAvailableStore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="a"
-                        android:visibility="gone"
-                        android:layout_margin="8dp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/btnAvailableStore"/>
-
-                    <Button
                         android:id="@+id/btnDetails"
                         style="?android:borderlessButtonStyle"
                         android:layout_width="0dp"
@@ -166,7 +136,7 @@
                         android:textAllCaps="false"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvAvailableStore"/>
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/tvDetails"

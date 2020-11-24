@@ -97,7 +97,7 @@
             android:textSize="13sp"
             android:textColor="@android:color/black"
             android:textAlignment="viewStart"/>
-        
+
         <Button
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"

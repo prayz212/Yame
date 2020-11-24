@@ -3,12 +3,15 @@ package com.example.yame.CartFragment;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,25 +22,25 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yame.CartProductDB;
 import com.example.yame.ChangeCurrency;
 import com.example.yame.R;
-import com.example.yame.Store;
+import com.example.yame.network.API;
+import com.example.yame.network.GetCartProductResponse;
+import com.example.yame.network.ProductDBApi;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
-
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartFragment extends Fragment implements CustomClickListener {
 
     private View view;
     private RecyclerView recyclerView;
-    private List<BuyProduct> buyProductList;
+    private ProductDBApi api;
+    private List<CartProductDB> buyProductList;
     private MyCartAdapter adapter;
     private TextView tvCountItem, tvTotal;
 
@@ -48,8 +51,10 @@ public class CartFragment extends Fragment implements CustomClickListener {
         view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         initView();
-        initData();
-        config();
+
+        api = API.getProdcutDBApi();
+        getCartProducts();
+
         handlerEvents();
 
         return view;
@@ -67,29 +72,52 @@ public class CartFragment extends Fragment implements CustomClickListener {
     }
 
     private void initData() {
-        buyProductList = new ArrayList<>();
-
-        //create list of image product
-        List<Integer> imgs = new ArrayList<>();
-        imgs.add(R.raw.cart_demo);
-        imgs.add(R.raw.cart_demo);
-        imgs.add(R.raw.cart_demo);
-        imgs.add(R.raw.cart_demo);
-
-        //create list of store have this product
-        List<Store> storeList = new ArrayList<>();
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-        storeList.add(new Store(12340, "This is store name", "123 Duong 3/2 P.12 Q.10 TP.HCM"));
-
-
-        for (int i = 0; i < 15; i++) {
-            buyProductList.add(new BuyProduct(imgs, "T-shirt " + i, i, 100000, 1, "This is product detail", "This is instruction paragraph", storeList));
-        }
-
         adapter = new MyCartAdapter(getContext(), buyProductList, R.layout.cart_custom_row_item);
         adapter.setListener(this);
+
+        config();
+
+        //DEPLAY DE CHO ADAPTER XONG
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                calTotalPrice();
+            }
+        },10);
+    }
+
+    private void getCartProducts() {
+        //TAM THOI TRUYEN ID USER VO
+        Call<GetCartProductResponse> call = api.getCartProduct(1);
+        call.enqueue(new Callback<GetCartProductResponse>() {
+            @Override
+            public void onResponse(Call<GetCartProductResponse> call, Response<GetCartProductResponse> response) {
+                if (response.isSuccessful()) {
+                    GetCartProductResponse result = response.body();
+
+                    if (result != null && result.status == 200) {
+                        buyProductList = result.data;
+                        initData();
+                    } else if (result != null && result.status == 201) {
+                        buyProductList = result.data;
+                        initData();
+                        Toast.makeText(getContext(), "Bạn chưa chọn sản phẩm nào, nhấn vào trang chủ để lựa sản phẩm.", Toast.LENGTH_LONG).show();
+                    } else {
+                        Log.e("test", "Server fail: " + result.message);
+                    }
+                } else {
+                    Log.e("test", "response fail: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetCartProductResponse> call, Throwable t) {
+                Log.e("test", "failure: " + t.getMessage());
+                t.printStackTrace();
+            }
+        });
+
     }
 
     private void config() {
@@ -101,13 +129,12 @@ public class CartFragment extends Fragment implements CustomClickListener {
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
 
         tvCountItem.setText("Giỏ hàng (" + buyProductList.size() + ")");
-        calTotalPrice();
     }
 
     private void calTotalPrice() {
         int total = 0;
-        for (BuyProduct i : buyProductList) {
-            total += i.getTotalPrice();
+        for (CartProductDB buy : buyProductList) {
+            total += buy.getTotalPrice();
         }
 
         tvTotal.setText(ChangeCurrency.formatCurrency(total));
@@ -128,7 +155,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
             int pos = viewHolder.getAdapterPosition();
-            BuyProduct item = buyProductList.get(pos);
+            CartProductDB item = buyProductList.get(pos);
 
             switch (direction) {
                 case ItemTouchHelper.LEFT:

@@ -5,10 +5,10 @@
     <string name="pay">Thanh toán</string>
 
     <!-- Navigation Item names -->
-    <string name="title_home">Home</string>
+    <string name="title_home">Trang chủ</string>
     <string name="title_search">Search</string>
-    <string name="title_more">More</string>
-    <string name="title_cart">Cart</string>
+    <string name="title_more">Xem thêm</string>
+    <string name="title_cart">Giỏ hàng</string>
 
     <!-- Categorys names -->
     <string name="category_1">Áo thun</string>

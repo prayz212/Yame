@@ -28,83 +28,83 @@ public class TypeViewHolder extends ChildViewHolder {
                 switch (type.getId()) {
                     //T-shirts
                 case 111:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_1));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_1), 111);
                     break;
                 case 112:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_2));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_2), 112);
                     break;
                 case 113:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_3));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_3), 113);
                     break;
                 case 114:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_4));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.tshirt_4), 114);
                     break;
 
                 //Coats
                 case 311:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.coat_1));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.coat_1), 311);
                     break;
                 case 312:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.coat_2));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.coat_2), 312);
                     break;
 
                 //Dressshirts
                 case 211:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_1));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_1), 211);
                     break;
                 case 212:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_2));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_2), 212);
                     break;
                 case 213:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_3));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_3), 213);
                     break;
                 case 214:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_4));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_4), 214);
                     break;
 
                 //Trousers
                 case 411:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_1));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_1), 411);
                     break;
                 case 412:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_2));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_2), 412);
                     break;
                 case 413:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_3));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_3), 413);
                     break;
                 case 414:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_4));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_4), 414);
                     break;
 
                 //Accessories
                 case 511:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_1));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_1), 511);
                     break;
                 case 512:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_2));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_2), 512);
                     break;
                 case 513:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_3));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_3), 513);
                     break;
                 case 514:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_4));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_4), 514);
                     break;
                 case 515:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_5));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_5), 515);
                     break;
                 case 516:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_6));
+                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.accessory_6), 516);
                     break;
-            }
-
+                }
             }
         });
     }
 
-    private void startNewActivity(Class toActivity, String type) {
+    private void startNewActivity(Class toActivity, String type, int id) {
         Context context = v.getContext();
         Intent intent = new Intent(context, toActivity);
         intent.putExtra("type", type);
+        intent.putExtra("id", id);
         context.startActivity(intent);
     }
 }

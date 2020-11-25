@@ -19,4 +19,8 @@ public interface ProductDBApi {
     @POST("get_cart_products.php")
     @FormUrlEncoded
     Call<GetCartProductResponse> getCartProduct(@Field("id") long id_user);
+
+    @POST("add_cart_product.php")
+    @FormUrlEncoded
+    Call<Response> addToCart(@Field("id") long id_user, @Field("id_product") long id_product);
 }

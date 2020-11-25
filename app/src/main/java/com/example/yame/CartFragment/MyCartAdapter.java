@@ -60,7 +60,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
 
         ChangeCurrency format = new ChangeCurrency();
         holder.tvProductPrice.setText(format.formatCurrency(product.getPrice()));
-//        holder.imgProduct.setImageResource(product.getImg().get(0));
 
         Glide.with(context)
                 .load(product.getUrl())

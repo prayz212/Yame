@@ -6,9 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.transition.Fade;
-import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
@@ -16,11 +14,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.yame.ChangeCurrency;
 import com.example.yame.ProductDetailDB;
 import com.example.yame.R;
 import com.example.yame.network.API;
@@ -34,12 +34,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.view.animation.Animation.RELATIVE_TO_SELF;
-
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener, ItemClickListener {
 
     private TextView tvProductName, tvProductPrice, tvTitleProduct, tvInstruction, tvDetails;
     private ImageButton btnBack;
+    private Button btnBuy;
     private CardView cardViewExpand;
     private Button btnInstruction, btnDetails;
     private ScrollView scrollViewDetails;
@@ -47,6 +46,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     private ProductDBApi api;
     private List<ProductDetailDB> products;
+    private long id_product;
 
 
     @Override
@@ -56,17 +56,17 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         initViews();
         receiveData();
-//        initData();
-        expandClicked();
+        handlerClicked();
 
         btnBack.setOnClickListener((v) -> {
             finish();
         });
     }
 
-    private void expandClicked() {
+    private void handlerClicked() {
         btnInstruction.setOnClickListener(this);
         btnDetails.setOnClickListener(this);
+        btnBuy.setOnClickListener(this);
     }
 
     private void expand(TextView tv, Button btn, String data) {
@@ -90,8 +90,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initData() {
+        ChangeCurrency format = new ChangeCurrency();
         tvProductName.setText(products.get(0).getName());
-        tvProductPrice.setText(String.valueOf(products.get(0).getPrice()));
+        tvProductPrice.setText((format.formatCurrency(products.get(0).getPrice())));
         tvTitleProduct.setText(products.get(0).getName());
 
         List<SlideModel> slideModels = new ArrayList<>();
@@ -116,19 +117,20 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         btnInstruction = findViewById(R.id.btnInstruction);
         btnDetails = findViewById(R.id.btnDetails);
         scrollViewDetails = findViewById(R.id.scrollViewDetails);
+        btnBuy = findViewById(R.id.btnCart);
     }
 
     private void receiveData() {
         Intent intent = getIntent();
 
-        long id = intent.getLongExtra("id", -1);
+        id_product = intent.getLongExtra("id", -1);
 
         api = API.getProdcutDBApi();
-        getProductDetail(id);
+        getProductDetail();
     }
 
-    private void getProductDetail(long id) {
-        Call<GetDetailResponse> call = api.getProductDetail(id);
+    private void getProductDetail() {
+        Call<GetDetailResponse> call = api.getProductDetail(id_product);
         call.enqueue(new Callback<GetDetailResponse>() {
             @Override
             public void onResponse(Call<GetDetailResponse> call, Response<GetDetailResponse> response) {
@@ -163,7 +165,36 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnDetails:
                 expand(tvDetails,btnDetails, products.get(0).getDetail());
                 break;
+            case R.id.btnCart:
+                addToCart();
+                break;
         }
+    }
+
+    private void addToCart() {
+        Call<com.example.yame.network.Response> call = api.addToCart(1, id_product);
+        call.enqueue(new Callback<com.example.yame.network.Response>() {
+            @Override
+            public void onResponse(Call<com.example.yame.network.Response> call, Response<com.example.yame.network.Response> response) {
+                if (response.isSuccessful()) {
+                    com.example.yame.network.Response result = response.body();
+
+                    if (result != null && result.status == 200) {
+                        Toast.makeText(getApplication(), "Đã thêm vào giỏ hàng.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplication(), "Đã tồn tại trong giỏ hàng.", Toast.LENGTH_SHORT).show();
+                        Log.e("test", "Server fail: " + result.message);
+                    }
+                } else {
+                    Log.e("test", "response fail: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<com.example.yame.network.Response> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
     }
 
     @Override

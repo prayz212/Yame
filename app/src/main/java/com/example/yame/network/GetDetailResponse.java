@@ -1,9 +1,9 @@
 package com.example.yame.network;
-import com.example.yame.ProductDetailDB;
+        import com.example.yame.ProductDetailDB;
 
-import java.util.List;
+        import java.util.List;
 
 public class GetDetailResponse extends Response {
-//    public ProductDetailDB data;
+    //    public ProductDetailDB data;
     public List<ProductDetailDB> data;
 }

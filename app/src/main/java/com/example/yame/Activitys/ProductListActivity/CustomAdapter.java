@@ -2,6 +2,7 @@ package com.example.yame.Activitys.ProductListActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.yame.Activitys.ProductDetailActivity.DetailActivity;
+import com.example.yame.ChangeCurrency;
 import com.example.yame.ProductDB;
 import com.example.yame.R;
+import com.example.yame.network.API;
+import com.example.yame.network.ProductDBApi;
+import com.example.yame.network.Response;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private Context context;
 
     private List<ProductDB> productList;
+    private ProductDBApi api;
     private int layout;
 
     public CustomAdapter(Context context, List<ProductDB> productList, int layout) {
@@ -47,6 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(@NonNull CustomAdapter.ViewHolder holder, int position) {
 
         ProductDB product = productList.get(position);
+        ChangeCurrency format = new ChangeCurrency();
 
         Glide.with(context)
                 .load(product.getUrl())
@@ -54,17 +64,44 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         holder.tvName.setText(product.getName());
 
-        holder.tvPrice.setText(String.valueOf(product.getPrice()));
+        holder.tvPrice.setText(format.formatCurrency(product.getPrice()));
 
 
         //add directly to cart fragment
         holder.imageButton.setOnClickListener((v) -> {
-            Toast.makeText(context, "clicked add to cart", Toast.LENGTH_SHORT).show();
+            addToCart(product.getId());
         });
 
         //open product detail activity
         holder.viewGroup.setOnClickListener((v) -> {
             openProductDetailActivity(product.getId());
+        });
+    }
+
+    private void addToCart(long id_product) {
+        api = API.getProdcutDBApi();
+        Call<Response> call = api.addToCart(1, id_product);
+        call.enqueue(new Callback<Response>() {
+            @Override
+            public void onResponse(Call<com.example.yame.network.Response> call, retrofit2.Response<Response> response) {
+                if (response.isSuccessful()) {
+                    com.example.yame.network.Response result = response.body();
+
+                    if (result != null && result.status == 200) {
+                        Toast.makeText(context, "Đã thêm vào giỏ hàng.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Đã tồn tại trong giỏ hàng.", Toast.LENGTH_SHORT).show();
+                        Log.e("test", "Server fail: " + result.message);
+                    }
+                } else {
+                    Log.e("test", "response fail: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<com.example.yame.network.Response> call, Throwable t) {
+                t.printStackTrace();
+            }
         });
     }
 

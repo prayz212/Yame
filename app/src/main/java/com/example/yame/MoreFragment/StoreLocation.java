@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.yame.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StoreLocation extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener {
@@ -44,9 +45,8 @@ public class StoreLocation extends AppCompatActivity implements SearchView.OnQue
     private void initData() {
         stores = new ArrayList<>();
 
-        for (int i = 0; i < 12; i++) {
-            stores.add("Cửa hàng Q." + i);
-        }
+        List<String> list = Arrays.asList(getResources().getStringArray(R.array.store_list));
+        stores.addAll(list);
 
         storeAdapter = new StoreAdapter(this, stores, R.layout.store_custom_row_item);
         mRecyclerView.setAdapter(storeAdapter);

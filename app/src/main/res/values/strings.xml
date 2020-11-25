@@ -76,21 +76,23 @@
     <string name="tb_stores">Cửa hàng</string>
 
     <!--    Location Store -->
-    <string name="Yame_1">YaMe Q.10: 770F, Sư Vạn Hạnh, P.12</string>
-    <string name="Yame_2">YaMe Q.10: 286, 3 tháng 2, P.12</string>
-    <string name="Yame_3">YaMe Q.5: 190, Nguyễn Trãi, P.3</string>
-    <string name="Yame_4">YaMe Q.6: 102 Hậu Giang</string>
-    <string name="Yame_5">YaMe Q.9: 114 Đỗ Xuân Hợp</string>
-    <string name="Yame_6">YaMe Q9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</string>
-    <string name="Yame_7">YaMe Q12: 290 Phan Văn Hớn, Q.12</string>
-    <string name="Yame_8">YaMe Q.Bình Thạnh: 138 Lê Văn Duyệt, P.1</string>
-    <string name="Yame_9">YaMe Tân Phú: 34 Nguyễn Sơn</string>
-    <string name="Yame_10">YaMe Tân Phú 2: 189 Hòa Bình</string>
-    <string name="Yame_11">YaMe Q.Bình Tân: 232 Lê Văn Quới</string>
-    <string name="Yame_12">YaMe Gò Vấp: 417, Quang Trung, P.10</string>
-    <string name="Yame_13">YaMe Gò Vấp 2: 1096 Quang Trung</string>
-    <string name="Yame_14">YaMe Hóc Môn: 39 Quang Trung, Thới Tam Thôn</string>
-    <string name="Yame_15">YaMe Thủ Đức: 336, Võ Văn Ngân, Q. Thủ Đức</string>
-    <string name="Yame_16">YaMe Q.7: 323 Huỳnh Tấn Phát</string>
+    <string-array name="store_list">
+        <item>YaMe Q.10: 770F, Sư Vạn Hạnh, P.12</item>
+        <item>YaMe Q.10: 286, 3 tháng 2, P.12</item>
+        <item>YaMe Q.5: 190, Nguyễn Trãi, P.3</item>
+        <item>YaMe Q.6: 102 Hậu Giang</item>
+        <item>YaMe Q.9: 114 Đỗ Xuân Hợp</item>
+        <item>YaMe Q9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</item>
+        <item>YaMe Q12: 290 Phan Văn Hớn, Q.12</item>
+        <item>YaMe Q.Bình Thạnh: 138 Lê Văn Duyệt, P.1</item>
+        <item>YaMe Tân Phú: 34 Nguyễn Sơn</item>
+        <item>YaMe Tân Phú 2: 189 Hòa Bình</item>
+        <item>YaMe Q.Bình Tân: 232 Lê Văn Quới</item>
+        <item>YaMe Gò Vấp: 417, Quang Trung, P.10</item>
+        <item>YaMe Gò Vấp 2: 1096 Quang Trung</item>
+        <item>YaMe Hóc Môn: 39 Quang Trung, Thới Tam Thôn</item>
+        <item>YaMe Thủ Đức: 336, Võ Văn Ngân, Q. Thủ Đức</item>
+        <item>YaMe Q.7: 323 Huỳnh Tấn Phát</item>
+    </string-array>
 
 </resources>

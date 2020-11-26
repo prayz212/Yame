@@ -12,6 +12,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".MoreFragment.Nation.NationActivity"></activity>
         <activity android:name=".Activitys.ProductDetailActivity.ShowImageActivity" />
+        <activity android:name=".CartFragment.PayActivity"/>
         <activity android:name=".MoreFragment.Store.StoreLocation" />
         <activity android:name=".Activitys.ProductDetailActivity.DetailActivity" />
         <activity android:name=".Activitys.ProductListActivity.ProductActivity" />

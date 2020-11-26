@@ -2,7 +2,7 @@
     <!-- App name -->
     <string name="app_name">Yame</string>
     <string name="total">Tổng tiền</string>
-    <string name="pay">Thanh toán</string>
+    <string name="pay">Đặt hàng</string>
 
     <!-- Navigation Item names -->
     <string name="title_home">Trang chủ</string>
@@ -74,6 +74,7 @@
     <string name="btn_signIn">Sign in</string>
     <string name="btn_createAccount">Create account</string>
     <string name="tb_stores">Cửa hàng</string>
+    <string name="btn_orderslist">Lịch sử mua hàng</string>
 
     <!--    Location Store -->
     <string-array name="store_list">

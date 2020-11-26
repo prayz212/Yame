@@ -1,5 +1,6 @@
 package com.example.yame.CartFragment;
 
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ import com.example.yame.network.Cart.CartDBApi;
 import com.example.yame.network.Cart.GetCartProductResponse;
 import com.example.yame.network.Product.ProductDBApi;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 import java.util.List;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import retrofit2.Call;
@@ -47,6 +51,9 @@ public class CartFragment extends Fragment implements CustomClickListener {
     private ProductDBApi productApi;
     private CartDBApi cartApi;
 
+    private Button btnOrder;
+    private int total;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,6 +62,8 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
         initView();
 
+        buyProductList = new ArrayList<>();
+
         api = new API();
         productApi = api.getProdcutDBApi();
         cartApi = api.getCartDBApi();
@@ -62,6 +71,21 @@ public class CartFragment extends Fragment implements CustomClickListener {
         getCartProducts();
 
         handlerEvents();
+
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (buyProductList.size() <= 0) {
+                    Toast.makeText(getContext(), "Bạn chưa mua món hàng gì để thanh toán", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(getContext(), PayActivity.class);
+                    intent.putExtra("total", total);
+                    intent.putExtra("id_cart", buyProductList.get(0).getId_cart());
+                    startActivity(intent);
+                }
+            }
+        });
 
         return view;
     }
@@ -75,9 +99,12 @@ public class CartFragment extends Fragment implements CustomClickListener {
         tvCountItem = view.findViewById(R.id.tvCountItem);
         recyclerView = view.findViewById(R.id.recyclerView);
         tvTotal = view.findViewById(R.id.tvTotalPrice);
+
+        btnOrder = view.findViewById(R.id.btnOrder);
     }
 
     private void initData() {
+
         adapter = new MyCartAdapter(getContext(), buyProductList, R.layout.cart_custom_row_item);
         adapter.setListener(this);
 
@@ -137,7 +164,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
     }
 
     private void calTotalPrice() {
-        int total = 0;
+        total = 0;
         for (CartProductDB buy : buyProductList) {
             total += buy.getTotalPrice();
         }

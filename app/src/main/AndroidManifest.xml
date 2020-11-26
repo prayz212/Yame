@@ -10,9 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activitys.ProductDetailActivity.ShowImageActivity"></activity>
+        <activity android:name=".MoreFragment.Nation.NationActivity"></activity>
+        <activity android:name=".Activitys.ProductDetailActivity.ShowImageActivity" />
         <activity android:name=".MoreFragment.MyAccount" />
-        <activity android:name=".MoreFragment.StoreLocation" />
+        <activity android:name=".MoreFragment.Store.StoreLocation" />
         <activity android:name=".Activitys.ProductDetailActivity.DetailActivity" />
         <activity android:name=".Activitys.ProductListActivity.ProductActivity" />
         <activity

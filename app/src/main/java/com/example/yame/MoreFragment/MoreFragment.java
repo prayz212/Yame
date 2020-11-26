@@ -12,11 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.yame.MoreFragment.Store.StoreLocation;
 import com.example.yame.R;
 
 public class MoreFragment extends Fragment implements View.OnClickListener{
     private View view;
-    private Button btn_login, btn_notifications, btn_stores, btn_languages_countries, btn_help;
+    private Button btn_stores, btn_languages_countries, btn_help;
 
     @Nullable
     @Override
@@ -31,13 +32,6 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_login:
-                Intent intent_my_account = new Intent(getContext(), MyAccount.class);
-                startActivity(intent_my_account);
-                break;
-            case R.id.btn_notifications:
-                Toast.makeText(getActivity(), "Thông báo",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.btn_stores:
                 Intent intent_store_location = new Intent(getContext(), StoreLocation.class);
                 startActivity(intent_store_location);
@@ -52,16 +46,12 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
     }
 
     private void buttonClicked() {
-        btn_login.setOnClickListener(this);
-        btn_notifications.setOnClickListener(this);
         btn_stores.setOnClickListener(this);
         btn_languages_countries.setOnClickListener(this);
         btn_help.setOnClickListener(this);
     }
 
     private void initViews() {
-        btn_login = view.findViewById(R.id.btn_login);
-        btn_notifications = view.findViewById(R.id.btn_notifications);
         btn_stores = view.findViewById(R.id.btn_stores);
         btn_languages_countries = view.findViewById(R.id.btn_languages_countries);
         btn_help = view.findViewById(R.id.btn_help);

@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -117,7 +116,6 @@ public class CartFragment extends Fragment implements CustomClickListener {
                 t.printStackTrace();
             }
         });
-
     }
 
     private void config() {
@@ -141,8 +139,35 @@ public class CartFragment extends Fragment implements CustomClickListener {
     }
 
     @Override
-    public void onQuantityChange() {
+    public void onQuantityChange(long id_cart, long id_product, int value) {
         calTotalPrice();
+        updateQuanlity(id_cart, id_product, value);
+    }
+
+    private void updateQuanlity(long id_cart, long id_product, int value) {
+        Call<com.example.yame.network.Response> call = api.updateCartProductQuanlity(id_product, id_cart, value);
+        call.enqueue(new Callback<com.example.yame.network.Response>() {
+            @Override
+            public void onResponse(Call<com.example.yame.network.Response> call, Response<com.example.yame.network.Response> response) {
+                if (response.isSuccessful()) {
+                    com.example.yame.network.Response result = response.body();
+
+                    if (result != null && result.status == 200) {
+                        Log.e("test", "Change success");
+                    } else {
+                        Log.e("test", "Server fail: " + result.message);
+                    }
+                } else {
+                    Log.e("test", "response fail: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<com.example.yame.network.Response> call, Throwable t) {
+                Log.e("test", "failure: " + t.getMessage());
+                t.printStackTrace();
+            }
+        });
     }
 
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -156,6 +181,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
             int pos = viewHolder.getAdapterPosition();
             CartProductDB item = buyProductList.get(pos);
+            int size = buyProductList.size();
 
             switch (direction) {
                 case ItemTouchHelper.LEFT:
@@ -169,6 +195,13 @@ public class CartFragment extends Fragment implements CustomClickListener {
                                buyProductList.add(pos, item);
                                adapter.notifyItemInserted(pos);
                             }).show();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        if (size > buyProductList.size()) {
+                            deleteCartProduct(item.getId_cart(), item.getId());
+                        }
+                    }, 2750 + 10);
 
                     //update total price
                     calTotalPrice();
@@ -191,4 +224,30 @@ public class CartFragment extends Fragment implements CustomClickListener {
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };
+
+    private void deleteCartProduct(long id_cart, long id_product) {
+        Call<com.example.yame.network.Response> call = api.deleteCartProduct(id_product, id_cart);
+        call.enqueue(new Callback<com.example.yame.network.Response>() {
+            @Override
+            public void onResponse(Call<com.example.yame.network.Response> call, Response<com.example.yame.network.Response> response) {
+                if (response.isSuccessful()) {
+                    com.example.yame.network.Response result = response.body();
+
+                    if (result != null && result.status == 200) {
+                        Log.e("test", "Delete success");
+                    } else {
+                        Log.e("test", "Server fail: " + result.message);
+                    }
+                } else {
+                    Log.e("test", "response fail: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<com.example.yame.network.Response> call, Throwable t) {
+                Log.e("test", "failure: " + t.getMessage());
+                t.printStackTrace();
+            }
+        });
+    }
 }

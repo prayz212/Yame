@@ -77,22 +77,22 @@
 
     <!--    Location Store -->
     <string-array name="store_list">
-        <item>YaMe Q.10: 770F, Sư Vạn Hạnh, P.12</item>
-        <item>YaMe Q.10: 286, 3 tháng 2, P.12</item>
         <item>YaMe Q.5: 190, Nguyễn Trãi, P.3</item>
         <item>YaMe Q.6: 102 Hậu Giang</item>
+        <item>YaMe Q.7: 323 Huỳnh Tấn Phát</item>
         <item>YaMe Q.9: 114 Đỗ Xuân Hợp</item>
-        <item>YaMe Q9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</item>
-        <item>YaMe Q12: 290 Phan Văn Hớn, Q.12</item>
-        <item>YaMe Q.Bình Thạnh: 138 Lê Văn Duyệt, P.1</item>
+        <item>YaMe Q.9: 200 Lê Văn Việt P.Tăng Nhơn Phú B</item>
+        <item>YaMe Q.10: 770F, Sư Vạn Hạnh, P.12</item>
+        <item>YaMe Q.10: 286, 3 tháng 2, P.12</item>
+        <item>YaMe Q.12: 290 Phan Văn Hớn, Q.12</item>
+        <item>YaMe Bình Thạnh: 138 Lê Văn Duyệt, P.1</item>
         <item>YaMe Tân Phú: 34 Nguyễn Sơn</item>
         <item>YaMe Tân Phú 2: 189 Hòa Bình</item>
-        <item>YaMe Q.Bình Tân: 232 Lê Văn Quới</item>
+        <item>YaMe Bình Tân: 232 Lê Văn Quới</item>
         <item>YaMe Gò Vấp: 417, Quang Trung, P.10</item>
         <item>YaMe Gò Vấp 2: 1096 Quang Trung</item>
-        <item>YaMe Hóc Môn: 39 Quang Trung, Thới Tam Thôn</item>
         <item>YaMe Thủ Đức: 336, Võ Văn Ngân, Q. Thủ Đức</item>
-        <item>YaMe Q.7: 323 Huỳnh Tấn Phát</item>
+        <item>YaMe Hóc Môn: 39 Quang Trung, Thới Tam Thôn</item>
     </string-array>
 
 </resources>

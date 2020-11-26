@@ -77,7 +77,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
 
             //update total price in cart fragment
             if (listener != null) {
-                listener.onQuantityChange();
+                listener.onQuantityChange(product.getId_cart(), product.getId(), newValue);
             }
         });
     }

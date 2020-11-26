@@ -16,49 +16,6 @@
         android:contentDescription="@string/imgView_fragment_more" />
 
     <Button
-        android:id="@+id/btn_login"
-        style="?android:borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:background="@null"
-        android:drawableStart="@drawable/ic_baseline_account_circle_24"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="20dp"
-        android:text="@string/btn_login"
-        android:textColor="@android:color/darker_gray"
-        android:textAllCaps="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view_top" />
-
-    <Button
-        android:id="@+id/btn_notifications"
-        style="?android:borderlessButtonStyle"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:background="@null"
-        android:drawableStart="@drawable/ic_baseline_notifications_24"
-        android:drawablePadding="10dp"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="20dp"
-        android:text="@string/btn_notifications"
-        android:textColor="@android:color/darker_gray"
-        android:textAllCaps="false"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintTop_toBottomOf="@+id/btn_notifications" />
-
-    <Button
         android:id="@+id/btn_stores"
         style="?android:borderlessButtonStyle"
         android:layout_width="0dp"
@@ -74,7 +31,14 @@
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@id/image_view_top" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@+id/btn_stores" />
 
     <Button
         android:id="@+id/btn_languages_countries"
@@ -92,7 +56,7 @@
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_stores" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
         android:id="@+id/btn_help"

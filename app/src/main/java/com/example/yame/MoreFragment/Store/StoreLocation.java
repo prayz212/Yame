@@ -1,4 +1,4 @@
-package com.example.yame.MoreFragment;
+package com.example.yame.MoreFragment.Store;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;

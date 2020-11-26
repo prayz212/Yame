@@ -1,4 +1,4 @@
-package com.example.yame.MoreFragment;
+package com.example.yame.MoreFragment.Store;
 
 import android.content.Context;
 import android.view.LayoutInflater;

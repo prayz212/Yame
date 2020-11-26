@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import com.example.yame.CartFragment.CartFragment;
 import com.example.yame.HomeFragment.HomeFragment;
 import com.example.yame.MoreFragment.MoreFragment;
-import com.example.yame.SearchFragment.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -43,9 +42,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (menuItem.getItemId()) {
             case R.id.navigation_home:
                 selectedFragment = new HomeFragment();
-                break;
-            case R.id.navigation_search:
-                selectedFragment = new SearchFragment();
                 break;
             case R.id.navigation_cart:
                 selectedFragment = new CartFragment();

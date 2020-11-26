@@ -203,7 +203,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
                         }
                     }, 2750 + 10);
 
-                    //update total price
+                    //update total price after change
                     calTotalPrice();
                     break;
             }

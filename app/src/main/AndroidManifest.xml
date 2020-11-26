@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MoreFragment.Nation.NationActivity"></activity>
+        <activity android:name=".MoreFragment.Help.HelpActivity"></activity>
+        <activity android:name=".MoreFragment.Nation.NationActivity" />
         <activity android:name=".Activitys.ProductDetailActivity.ShowImageActivity" />
         <activity android:name=".CartFragment.PayActivity"/>
         <activity android:name=".MoreFragment.Store.StoreLocation" />
@@ -27,6 +28,7 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

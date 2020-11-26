@@ -228,6 +228,10 @@ public class CartFragment extends Fragment implements CustomClickListener {
                             .setAction("Hoàn tác", v -> {
                                buyProductList.add(pos, item);
                                adapter.notifyItemInserted(pos);
+
+                                //update total price after change
+                                calTotalPrice();
+                                tvCountItem.setText("Giỏ hàng (" + buyProductList.size() + ")");
                             }).show();
 
                     Handler handler = new Handler();
@@ -239,6 +243,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
                     //update total price after change
                     calTotalPrice();
+                    tvCountItem.setText("Giỏ hàng (" + buyProductList.size() + ")");
                     break;
             }
         }

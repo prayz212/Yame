@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.yame.MoreFragment.Nation.NationActivity;
 import com.example.yame.MoreFragment.Store.StoreLocation;
 import com.example.yame.R;
 
@@ -31,13 +32,15 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
     }
 
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.btn_stores:
-                Intent intent_store_location = new Intent(getContext(), StoreLocation.class);
-                startActivity(intent_store_location);
+                intent = new Intent(getContext(), StoreLocation.class);
+                startActivity(intent);
                 break;
             case R.id.btn_languages_countries:
-                Toast.makeText(getActivity(), "Ngôn ngữ",Toast.LENGTH_SHORT).show();
+                intent = new Intent(getContext(), NationActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_help:
                 Toast.makeText(getActivity(), "Giúp đỡ",Toast.LENGTH_SHORT).show();

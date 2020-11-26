@@ -21,7 +21,8 @@ import com.example.yame.ChangeCurrency;
 import com.example.yame.ProductDB;
 import com.example.yame.R;
 import com.example.yame.network.API;
-import com.example.yame.network.ProductDBApi;
+import com.example.yame.network.Cart.CartDBApi;
+import com.example.yame.network.Product.ProductDBApi;
 import com.example.yame.network.Response;
 
 import java.util.List;
@@ -34,7 +35,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private Context context;
 
     private List<ProductDB> productList;
-    private ProductDBApi api;
+    private API api;
+    private CartDBApi cartApi;
     private int layout;
 
     public CustomAdapter(Context context, List<ProductDB> productList, int layout) {
@@ -79,8 +81,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     }
 
     private void addToCart(long id_product) {
-        api = API.getProdcutDBApi();
-        Call<Response> call = api.addToCart(1, id_product);
+        api = new API();
+        cartApi = api.getCartDBApi();
+        Call<Response> call = cartApi.addToCart(1, id_product);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<com.example.yame.network.Response> call, retrofit2.Response<Response> response) {

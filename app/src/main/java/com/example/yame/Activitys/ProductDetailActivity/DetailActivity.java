@@ -24,8 +24,9 @@ import com.example.yame.ChangeCurrency;
 import com.example.yame.ProductDetailDB;
 import com.example.yame.R;
 import com.example.yame.network.API;
-import com.example.yame.network.GetDetailResponse;
-import com.example.yame.network.ProductDBApi;
+import com.example.yame.network.Cart.CartDBApi;
+import com.example.yame.network.Product.GetDetailResponse;
+import com.example.yame.network.Product.ProductDBApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private ScrollView scrollViewDetails;
     private ImageSlider imageSlider;
 
-    private ProductDBApi api;
+    private API api;
+    private ProductDBApi productApi;
+    private CartDBApi cardApi;
     private List<ProductDetailDB> products;
     private long id_product;
 
@@ -125,12 +128,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         id_product = intent.getLongExtra("id", -1);
 
-        api = API.getProdcutDBApi();
+        api = new API();
+        productApi = api.getProdcutDBApi();
+        cardApi = api.getCartDBApi();
+
         getProductDetail();
     }
 
     private void getProductDetail() {
-        Call<GetDetailResponse> call = api.getProductDetail(id_product);
+        Call<GetDetailResponse> call = productApi.getProductDetail(id_product);
         call.enqueue(new Callback<GetDetailResponse>() {
             @Override
             public void onResponse(Call<GetDetailResponse> call, Response<GetDetailResponse> response) {
@@ -172,7 +178,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void addToCart() {
-        Call<com.example.yame.network.Response> call = api.addToCart(1, id_product);
+        //Tam thoi de id_user la 1
+        Call<com.example.yame.network.Response> call = cardApi.addToCart(1, id_product);
         call.enqueue(new Callback<com.example.yame.network.Response>() {
             @Override
             public void onResponse(Call<com.example.yame.network.Response> call, Response<com.example.yame.network.Response> response) {

@@ -25,8 +25,9 @@ import com.example.yame.CartProductDB;
 import com.example.yame.ChangeCurrency;
 import com.example.yame.R;
 import com.example.yame.network.API;
-import com.example.yame.network.GetCartProductResponse;
-import com.example.yame.network.ProductDBApi;
+import com.example.yame.network.Cart.CartDBApi;
+import com.example.yame.network.Cart.GetCartProductResponse;
+import com.example.yame.network.Product.ProductDBApi;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.List;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -38,10 +39,13 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
     private View view;
     private RecyclerView recyclerView;
-    private ProductDBApi api;
-    private List<CartProductDB> buyProductList;
     private MyCartAdapter adapter;
     private TextView tvCountItem, tvTotal;
+
+    private API api;
+    private List<CartProductDB> buyProductList;
+    private ProductDBApi productApi;
+    private CartDBApi cartApi;
 
     @Nullable
     @Override
@@ -51,7 +55,10 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
         initView();
 
-        api = API.getProdcutDBApi();
+        api = new API();
+        productApi = api.getProdcutDBApi();
+        cartApi = api.getCartDBApi();
+
         getCartProducts();
 
         handlerEvents();
@@ -88,7 +95,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
     private void getCartProducts() {
         //TAM THOI TRUYEN ID USER VO
-        Call<GetCartProductResponse> call = api.getCartProduct(1);
+        Call<GetCartProductResponse> call = productApi.getCartProduct(1);
         call.enqueue(new Callback<GetCartProductResponse>() {
             @Override
             public void onResponse(Call<GetCartProductResponse> call, Response<GetCartProductResponse> response) {
@@ -145,7 +152,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
     }
 
     private void updateQuanlity(long id_cart, long id_product, int value) {
-        Call<com.example.yame.network.Response> call = api.updateCartProductQuanlity(id_product, id_cart, value);
+        Call<com.example.yame.network.Response> call = cartApi.updateCartProductQuanlity(id_product, id_cart, value);
         call.enqueue(new Callback<com.example.yame.network.Response>() {
             @Override
             public void onResponse(Call<com.example.yame.network.Response> call, Response<com.example.yame.network.Response> response) {
@@ -226,7 +233,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
     };
 
     private void deleteCartProduct(long id_cart, long id_product) {
-        Call<com.example.yame.network.Response> call = api.deleteCartProduct(id_product, id_cart);
+        Call<com.example.yame.network.Response> call = cartApi.deleteCartProduct(id_product, id_cart);
         call.enqueue(new Callback<com.example.yame.network.Response>() {
             @Override
             public void onResponse(Call<com.example.yame.network.Response> call, Response<com.example.yame.network.Response> response) {

@@ -1,5 +1,6 @@
-package com.example.yame.network;
+package com.example.yame.network.Product;
         import com.example.yame.ProductDetailDB;
+        import com.example.yame.network.Response;
 
         import java.util.List;
 

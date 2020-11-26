@@ -12,8 +12,8 @@ import android.widget.TextView;
 import com.example.yame.ProductDB;
 import com.example.yame.R;
 import com.example.yame.network.API;
-import com.example.yame.network.GetResponse;
-import com.example.yame.network.ProductDBApi;
+import com.example.yame.network.Product.GetResponse;
+import com.example.yame.network.Product.ProductDBApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,8 @@ public class ProductActivity extends AppCompatActivity {
 
 
     private List<ProductDB> productList;
-    private ProductDBApi api;
+    private ProductDBApi productApi;
+    private API api;
     private int id;
 
     @Override
@@ -45,7 +46,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void getProduct() {
-        Call<GetResponse> call = api.getProduct(id);
+        Call<GetResponse> call = productApi.getProduct(id);
         call.enqueue(new Callback<GetResponse>() {
             @Override
             public void onResponse(Call<GetResponse> call, Response<GetResponse> response) {
@@ -105,7 +106,8 @@ public class ProductActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addItemDecoration(new CustomDecoration(2, 2, true));
 
-        api = API.getProdcutDBApi();
+        api = new API();
+        productApi = api.getProdcutDBApi();
         getProduct();
     }
 }

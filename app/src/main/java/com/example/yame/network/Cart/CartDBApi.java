@@ -1,24 +1,13 @@
-package com.example.yame.network;
+package com.example.yame.network.Cart;
+
+import com.example.yame.network.Response;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface ProductDBApi {
-
-    @POST("get_all_product.php")
-    @FormUrlEncoded
-    Call<GetResponse> getProduct(@Field("id_type") long id);
-
-    @POST("get_product_by_id.php")
-    @FormUrlEncoded
-    Call<GetDetailResponse> getProductDetail(@Field("id") long id);
-
-    @POST("get_cart_products.php")
-    @FormUrlEncoded
-    Call<GetCartProductResponse> getCartProduct(@Field("id") long id_user);
+public interface CartDBApi {
 
     @POST("add_cart_product.php")
     @FormUrlEncoded
@@ -31,4 +20,5 @@ public interface ProductDBApi {
     @POST("delete_cart_product.php")
     @FormUrlEncoded
     Call<Response> deleteCartProduct(@Field("id_product") long id_product, @Field("id_cart") long id_cart);
+
 }

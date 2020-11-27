@@ -12,13 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.yame.MoreFragment.History.HistoryActivity;
 import com.example.yame.MoreFragment.Nation.NationActivity;
 import com.example.yame.MoreFragment.Store.StoreLocation;
 import com.example.yame.R;
 
 public class MoreFragment extends Fragment implements View.OnClickListener{
     private View view;
-    private Button btn_stores, btn_languages_countries, btn_help;
+    private Button btn_history, btn_stores, btn_languages_countries, btn_help;
 
     @Nullable
     @Override
@@ -34,6 +35,10 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.btn_history:
+                intent = new Intent(getContext(), HistoryActivity.class);
+                startActivity(intent);
+                break;
             case R.id.btn_stores:
                 intent = new Intent(getContext(), StoreLocation.class);
                 startActivity(intent);
@@ -49,12 +54,14 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
     }
 
     private void buttonClicked() {
+        btn_history.setOnClickListener(this);
         btn_stores.setOnClickListener(this);
         btn_languages_countries.setOnClickListener(this);
         btn_help.setOnClickListener(this);
     }
 
     private void initViews() {
+        btn_history = view.findViewById(R.id.btn_history);
         btn_stores = view.findViewById(R.id.btn_stores);
         btn_languages_countries = view.findViewById(R.id.btn_languages_countries);
         btn_help = view.findViewById(R.id.btn_help);

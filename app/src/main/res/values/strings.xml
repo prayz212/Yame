@@ -48,11 +48,12 @@
     <string name="accessory_6">Túi đeo</string>
 
     <!-- Text of buttons, fragment_more -->
-    <string name="btn_login">Đăng ký | Tạo tài khoản</string>
-    <string name="btn_notifications">Thông báo</string>
+    <string name="btn_history">Lịch sử đặt hàng</string>
     <string name="btn_stores">Cửa hàng</string>
     <string name="btn_languages_countries">Ngôn ngữ và Quốc gia</string>
     <string name="btn_help">Giúp đỡ</string>
+    <string name="detail_invoice">Chi tiết đơn hàng</string>
+
 
     <!-- ImageView contentDescription, fragment_more-->
     <string name="imgView_fragment_more">Ảnh...</string>

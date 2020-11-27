@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreFragment.Nation.NationActivity">
+    tools:context=".MoreFragment.History.DetailInvoiceActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
@@ -34,7 +34,7 @@
                 android:id="@+id/tvTitleProduct"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/btn_languages_countries"
+                android:text="@string/detail_invoice"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
                 android:textAlignment="viewStart"
@@ -46,11 +46,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/nationRecyclerView"
+        android:id="@+id/detailInvoiceRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintTop_toBottomOf="@id/appBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -78,10 +78,9 @@ public class CartFragment extends Fragment implements CustomClickListener {
             @Override
             public void onClick(View v) {
                 if (buyProductList.size() <= 0) {
-                    Toast.makeText(getContext(), "Bạn chưa mua món hàng gì để thanh toán", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Bạn chưa chọn sản phẩm nào để đặt hàng.", Toast.LENGTH_LONG).show();
                 }
                 else {
-
                     Intent intent = new Intent(getContext(), PayActivity.class);
                     intent.putExtra("total", total);
                     intent.putExtra("id_cart", buyProductList.get(0).getId_cart());

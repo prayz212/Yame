@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MoreFragment.History.DetailInvoiceActivity"></activity>
-        <activity android:name=".MoreFragment.History.HistoryActivity" />
-        <activity android:name=".MoreFragment.Help.HelpActivity" />
-        <activity android:name=".MoreFragment.Nation.NationActivity" />
-        <activity android:name=".Activitys.ProductDetailActivity.ShowImageActivity" />
-        <activity android:name=".CartFragment.PayActivity" />
-        <activity android:name=".MoreFragment.Store.StoreLocation" />
-        <activity android:name=".Activitys.ProductDetailActivity.DetailActivity" />
-        <activity android:name=".Activitys.ProductListActivity.ProductActivity" />
+        <activity android:screenOrientation="portrait" android:name=".MoreFragment.History.DetailInvoiceActivity"></activity>
+        <activity android:screenOrientation="portrait" android:name=".MoreFragment.History.HistoryActivity" />
+        <activity android:screenOrientation="portrait" android:name=".MoreFragment.Help.HelpActivity" />
+        <activity android:screenOrientation="portrait" android:name=".MoreFragment.Nation.NationActivity" />
+        <activity android:screenOrientation="portrait" android:name=".Activitys.ProductDetailActivity.ShowImageActivity" />
+        <activity android:screenOrientation="portrait" android:name=".CartFragment.PayActivity" />
+        <activity android:screenOrientation="portrait" android:name=".MoreFragment.Store.StoreLocation" />
+        <activity android:screenOrientation="portrait" android:name=".Activitys.ProductDetailActivity.DetailActivity" />
+        <activity android:screenOrientation="portrait" android:name=".Activitys.ProductListActivity.ProductActivity" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -30,8 +30,8 @@
             </intent-filter>
         </activity>
     </application>
+    
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

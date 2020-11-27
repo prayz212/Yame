@@ -154,7 +154,7 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
 
                     if (result != null && result.status == 200) {
                         Intent returnIntent = new Intent();
-                        returnIntent.putExtra("noti", "Bạn đã đặt hàng thành công");
+                        returnIntent.putExtra("noti", "Bạn đã đặt hàng thành công.");
                         setResult(Activity.RESULT_OK,returnIntent);
                         finish();
                     } else {

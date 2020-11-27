@@ -14,7 +14,7 @@ import com.example.yame.CartProductDB;
 import com.example.yame.R;
 import com.example.yame.network.API;
 import com.example.yame.network.Cart.GetCartProductResponse;
-import com.example.yame.network.Invoice.InvoiceDBApi;
+import com.example.yame.network.Order.OrderDBApi;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,7 +29,7 @@ public class DetailInvoiceActivity extends AppCompatActivity implements View.OnC
     private ImageButton btnBack;
 
     private API api;
-    private InvoiceDBApi invoiceApi;
+    private OrderDBApi invoiceApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -35,11 +35,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/detail_invoice"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textColor="@android:color/black"
                 android:textAlignment="viewStart"
-                android:paddingStart="10dp"
-                android:fontFamily="monospace" />
+                android:paddingStart="10dp" />
 
         </androidx.appcompat.widget.Toolbar>
 

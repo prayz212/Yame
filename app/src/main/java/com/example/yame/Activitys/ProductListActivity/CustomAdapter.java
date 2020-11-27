@@ -110,7 +110,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     private void openProductDetailActivity(long id) {
         Intent intent = new Intent(context, DetailActivity.class);
-        intent.putExtra("id", id);
+        intent.putExtra("id_product", id);
         context.startActivity(intent);
     }
 

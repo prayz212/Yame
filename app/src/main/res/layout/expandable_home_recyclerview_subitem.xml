@@ -16,8 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="50dp"
         android:textAlignment="textStart"
-        android:textSize="16dp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="@android:color/black" />
+        android:textSize="18dp"
+        android:textColor="@android:color/black"
+        android:background="@color/background_color_fragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

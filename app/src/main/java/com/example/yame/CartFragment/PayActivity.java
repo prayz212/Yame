@@ -1,5 +1,6 @@
 package com.example.yame.CartFragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,14 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yame.R;
 import com.example.yame.network.API;
 import com.example.yame.network.Cart.CartDBApi;
-import com.example.yame.network.Invoice.AddInvoiceResponse;
-import com.example.yame.network.Invoice.InvoiceDBApi;
+import com.example.yame.network.Order.AddOrderResponse;
+import com.example.yame.network.Order.OrderDBApi;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,7 +33,7 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
     private Button btnPay, btnBackToBuyMore;
 
     private API api;
-    private InvoiceDBApi apiInvoice;
+    private OrderDBApi apiInvoice;
     private CartDBApi apiCart;
 
     @Override
@@ -63,17 +65,36 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgPayBack:
-                finish();
+            case R.id.btnBackToBuyMore:
+                backToCard();
                 break;
             case R.id.btnPay:
-                api = new API();
-                insertInvoice();
-                break;
-            case R.id.btnBackToBuyMore:
-                finish();
+                boolean check = checkInput();
+                if (check) {
+                    api = new API();
+                    insertInvoice();
+                } else {
+                    Toast.makeText(getBaseContext(), "Bạn cần nhập đủ thông tin về Họ tên, Số điện thoại và Địa chỉ.", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
+
+    private boolean checkInput() {
+        if (edtFullname.getText().toString().trim().isEmpty()
+            || edtPhone.getText().toString().trim().isEmpty()
+            || edtAddress.getText().toString().trim().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    private void backToCard() {
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
+    }
+
 
     private void insertInvoice() {
         apiInvoice = api.getInvoiceDBApi();
@@ -87,7 +108,7 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
 
         long id_cart = intent.getLongExtra("id_cart", 0);
 
-        Call<AddInvoiceResponse> call = apiInvoice.addInvoice(1,
+        Call<AddOrderResponse> call = apiInvoice.addInvoice(1,
                 id_cart,
                 edtFullname.getText().toString(),
                 edtPhone.getText().toString(),
@@ -97,11 +118,11 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
 
         Log.e("test", String.valueOf(id_cart));
 
-        call.enqueue(new Callback<AddInvoiceResponse>() {
+        call.enqueue(new Callback<AddOrderResponse>() {
             @Override
-            public void onResponse(Call<AddInvoiceResponse> call, Response<AddInvoiceResponse> response) {
+            public void onResponse(Call<AddOrderResponse> call, Response<AddOrderResponse> response) {
                 if (response.isSuccessful()) {
-                    AddInvoiceResponse result = response.body();
+                    AddOrderResponse result = response.body();
 
                     if (result != null && result.status == 200) {
                         updateCartStatus(id_cart);
@@ -114,7 +135,7 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
             }
 
             @Override
-            public void onFailure(Call<AddInvoiceResponse> call, Throwable t) {
+            public void onFailure(Call<AddOrderResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });
@@ -132,10 +153,10 @@ public class PayActivity extends AppCompatActivity implements View.OnClickListen
                     com.example.yame.network.Response result = response.body();
 
                     if (result != null && result.status == 200) {
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("noti", "Bạn đã đặt hàng thành công");
+                        setResult(Activity.RESULT_OK,returnIntent);
                         finish();
-//                        Intent intent = new Intent(getBaseContext(), CartFragment.class);
-//                        intent.putExtra("noti", "1");
-//                        startActivity(intent);
                     } else {
                         Log.e("test", "Server fail: " + result.message);
                     }

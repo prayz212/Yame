@@ -126,7 +126,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void receiveData() {
         Intent intent = getIntent();
 
-        id_product = intent.getLongExtra("id", -1);
+        id_product = intent.getLongExtra("id_product", -1);
 
         api = new API();
         productApi = api.getProdcutDBApi();

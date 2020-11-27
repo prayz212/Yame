@@ -1,7 +1,6 @@
 package com.example.yame.MoreFragment.History;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,15 +10,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.yame.InvoiceDB;
+import com.example.yame.OrderDB;
 import com.example.yame.R;
 import com.example.yame.network.API;
-import com.example.yame.network.Cart.GetCartProductResponse;
-import com.example.yame.network.Invoice.GetInvoiceResponse;
-import com.example.yame.network.Invoice.InvoiceDBApi;
+import com.example.yame.network.Order.GetOrderResponse;
+import com.example.yame.network.Order.OrderDBApi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,13 +25,13 @@ import retrofit2.Response;
 
 public class HistoryActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private List<InvoiceDB> invoices;
+    private List<OrderDB> invoices;
     private HistoryAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private ImageButton btnBack;
 
     private API api;
-    private InvoiceDBApi invoiceApi;
+    private OrderDBApi invoiceApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +52,12 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void getInvoices() {
-        Call<GetInvoiceResponse> call = invoiceApi.getInvoice(1);
-        call.enqueue(new Callback<GetInvoiceResponse>() {
+        Call<GetOrderResponse> call = invoiceApi.getInvoice(1);
+        call.enqueue(new Callback<GetOrderResponse>() {
             @Override
-            public void onResponse(Call<GetInvoiceResponse> call, Response<GetInvoiceResponse> response) {
+            public void onResponse(Call<GetOrderResponse> call, Response<GetOrderResponse> response) {
                 if (response.isSuccessful()) {
-                    GetInvoiceResponse result = response.body();
+                    GetOrderResponse result = response.body();
 
                     if (result != null && result.status == 200) {
                         invoices = result.data;
@@ -78,7 +75,7 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             }
 
             @Override
-            public void onFailure(Call<GetInvoiceResponse> call, Throwable t) {
+            public void onFailure(Call<GetOrderResponse> call, Throwable t) {
                 Log.e("test", "failure: " + t.getMessage());
                 t.printStackTrace();
             }

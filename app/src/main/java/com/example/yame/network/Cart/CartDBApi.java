@@ -25,4 +25,8 @@ public interface CartDBApi {
     @FormUrlEncoded
     Call<Response> deleteCartProduct(@Field("id_product") long id_product, @Field("id_cart") long id_cart);
 
+    @POST("get_cart_products.php")
+    @FormUrlEncoded
+    Call<GetCartProductResponse> getCartProduct(@Field("id") long id_user);
+
 }

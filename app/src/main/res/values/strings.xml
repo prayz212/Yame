@@ -97,6 +97,24 @@
         <item>YaMe Hóc Môn: 39 Quang Trung, Thới Tam Thôn</item>
     </string-array>
 
+    <!--    Instruction -->
+    <string name="tvInstruction1">Làm sao để thêm sản phẩm ưu thích vào giỏ hàng?
+                                \n\nBước 1: Vào trang chủ.
+                                \nBước 2: Chọn loại sản phẩm bạn cần mua và nhấn vào loại sản phẩm đó.
+                                \nBước 3: Chọn sản phẩm để xem chi tiết hoặc nhấn vào biểu tượng xe đẩy để thêm sản phẩm trực tiếp vào giỏ hàng.
+                                \nBước 4: Chọn Thêm vào giỏ hàng.
+                                \n\nHãy quay trở lại trang chủ để mua sắm bất tận.</string>
+    <string name="tvInstruction2">Làm sao để đặt hàng trên ứng dụng?
+                                \n\nBước 1: Bạn cần thêm sản phẩm cần mua vào giỏ hàng.
+                                \nBước 2: Chọn Đặt hàng.
+                                \nBước 3: Điền đầy đủ thông tin theo yêu cầu.
+                                \nBước 4: Chọn Xác nhận đặt hàng.
+                                \n\nHãy quay trở lại trang chủ để mua sắm bất tận.</string>
+    <string name="tvInstruction3">Bạn cần sự hỗ trợ?
+                                \n\nCách 1: Điện thoại: 1900 1919.
+                                \nCách 2: Email     : yame@gmail.com.
+                                \nCách 3: Liên hệ với bộ phận chăm sóc khách hàng tại cửa hàng.</string>
+
     <!--    Nation and Language -->
     <string-array name="countries_list">
         <item>Afghanistan</item>

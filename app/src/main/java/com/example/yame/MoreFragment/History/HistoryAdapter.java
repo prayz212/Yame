@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yame.ChangeCurrency;
-import com.example.yame.InvoiceDB;
+import com.example.yame.OrderDB;
 import com.example.yame.R;
 
 import java.util.List;
@@ -22,10 +22,10 @@ import java.util.List;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private Context context;
-    private List<InvoiceDB> invoices;
+    private List<OrderDB> invoices;
     private int layout;
 
-    public HistoryAdapter(Context context, List<InvoiceDB> invoices, int layout) {
+    public HistoryAdapter(Context context, List<OrderDB> invoices, int layout) {
         this.context = context;
         this.invoices = invoices;
         this.layout = layout;
@@ -43,10 +43,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        InvoiceDB invoice = invoices.get(position);
+        OrderDB invoice = invoices.get(position);
         ChangeCurrency format = new ChangeCurrency();
 
-        holder.tvInvoiceID.setText("Mã hoá đơn: " + invoice.getId());
+        holder.tvInvoiceID.setText("Mã đơn đặt hàng: " + invoice.getId());
         holder.tvTotalPrice.setText("Tổng tiền: " + format.formatCurrency(invoice.getTotal()));
         holder.tvDate.setText("Ngày đặt: " + invoice.getDate());
 
@@ -60,7 +60,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
                 holder.imgStatus.setImageDrawable(context.getDrawable(R.drawable.ic_check));
                 break;
             case 2:
-                holder.imgStatus.setImageDrawable(context.getDrawable(R.drawable.error));
+                holder.imgStatus.setImageDrawable(context.getDrawable(R.drawable.ic_error));
                 break;
         }
 

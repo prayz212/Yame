@@ -1,11 +1,11 @@
 package com.example.yame;
 
-public class InvoiceDB {
+public class OrderDB {
     private long id, id_cart;
     private int total, status;
     private String name, phone, address, note, date;
 
-    public InvoiceDB(long id, long id_cart, int total, int status, String name, String phone, String address, String note, String date) {
+    public OrderDB(long id, long id_cart, int total, int status, String name, String phone, String address, String note, String date) {
         this.id = id;
         this.id_cart = id_cart;
         this.total = total;
@@ -91,7 +91,7 @@ public class InvoiceDB {
 
     @Override
     public String toString() {
-        return "InvoiceDB{" +
+        return "OrderDB{" +
                 "id=" + id +
                 ", id_cart=" + id_cart +
                 ", total=" + total +

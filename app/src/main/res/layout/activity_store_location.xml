@@ -37,11 +37,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/tb_stores"
-                android:textSize="16sp"
+                android:textSize="24sp"
                 android:textColor="@android:color/black"
                 android:textAlignment="viewStart"
-                android:paddingStart="10dp"
-                android:fontFamily="monospace" />
+                android:paddingStart="10dp"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

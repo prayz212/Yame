@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.yame.MoreFragment.Help.HelpActivity;
 import com.example.yame.MoreFragment.History.HistoryActivity;
 import com.example.yame.MoreFragment.Nation.NationActivity;
 import com.example.yame.MoreFragment.Store.StoreLocation;
@@ -48,7 +49,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.btn_help:
-                Toast.makeText(getActivity(), "Giúp đỡ",Toast.LENGTH_SHORT).show();
+                intent = new Intent(getContext(), HelpActivity.class);
+                startActivity(intent);
                 break;
         }
     }

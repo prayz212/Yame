@@ -1,5 +1,6 @@
 package com.example.yame.CartFragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -54,6 +55,8 @@ public class CartFragment extends Fragment implements CustomClickListener {
     private Button btnOrder;
     private int total;
 
+    private int LAUNCH_SECOND_ACTIVITY = 1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,7 +68,6 @@ public class CartFragment extends Fragment implements CustomClickListener {
         buyProductList = new ArrayList<>();
 
         api = new API();
-        productApi = api.getProdcutDBApi();
         cartApi = api.getCartDBApi();
 
         getCartProducts();
@@ -79,10 +81,11 @@ public class CartFragment extends Fragment implements CustomClickListener {
                     Toast.makeText(getContext(), "Bạn chưa mua món hàng gì để thanh toán", Toast.LENGTH_LONG).show();
                 }
                 else {
+
                     Intent intent = new Intent(getContext(), PayActivity.class);
                     intent.putExtra("total", total);
                     intent.putExtra("id_cart", buyProductList.get(0).getId_cart());
-                    startActivity(intent);
+                    startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
                 }
             }
         });
@@ -122,7 +125,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
     private void getCartProducts() {
         //TAM THOI TRUYEN ID USER VO
-        Call<GetCartProductResponse> call = productApi.getCartProduct(1);
+        Call<GetCartProductResponse> call = cartApi.getCartProduct(1);
         call.enqueue(new Callback<GetCartProductResponse>() {
             @Override
             public void onResponse(Call<GetCartProductResponse> call, Response<GetCartProductResponse> response) {
@@ -132,10 +135,6 @@ public class CartFragment extends Fragment implements CustomClickListener {
                     if (result != null && result.status == 200) {
                         buyProductList = result.data;
                         initData();
-                    } else if (result != null && result.status == 201) {
-                        buyProductList = result.data;
-                        initData();
-                        Toast.makeText(getContext(), "Bạn chưa chọn sản phẩm nào, nhấn vào trang chủ để lựa sản phẩm.", Toast.LENGTH_LONG).show();
                     } else {
                         Log.e("test", "Server fail: " + result.message);
                     }
@@ -232,7 +231,8 @@ public class CartFragment extends Fragment implements CustomClickListener {
                                 //update total price after change
                                 calTotalPrice();
                                 tvCountItem.setText("Giỏ hàng (" + buyProductList.size() + ")");
-                            }).show();
+                            }).setActionTextColor(getResources().getColor(R.color.undo))
+                            .show();
 
                     Handler handler = new Handler();
                     handler.postDelayed(() -> {
@@ -288,5 +288,20 @@ public class CartFragment extends Fragment implements CustomClickListener {
                 t.printStackTrace();
             }
         });
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_SECOND_ACTIVITY) {
+            if(resultCode == Activity.RESULT_OK){
+                String noti = data.getStringExtra("noti");
+                Toast.makeText(getContext(), noti, Toast.LENGTH_LONG).show();
+
+                getCartProducts();
+            }
+        }
     }
 }

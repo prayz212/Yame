@@ -67,13 +67,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHold
 
         holder.quantityButton.setNumber(String.valueOf(product.getQuanlity()));
 
-        product.setTotalPrice(product.getPrice() * product.getQuanlity());
 
         holder.quantityButton.setOnValueChangeListener((view, oldValue, newValue) -> {
 
             product.setQuanlity(newValue);
-            int newTotal = newValue * product.getPrice();
-            product.setTotalPrice(newTotal);
 
             //update total price in cart fragment
             if (listener != null) {

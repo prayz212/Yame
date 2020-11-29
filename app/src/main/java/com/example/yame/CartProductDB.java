@@ -6,13 +6,11 @@ public class CartProductDB extends ProductDB {
 
     private long id_cart;
     private int quanlity;
-    private int totalPrice;
 
     public CartProductDB(long id, int price, String name, String imgs, int quan, long cart) {
         super(id, price, name, imgs);
         this.id_cart = cart;
         this.quanlity = quan;
-        this.totalPrice = 0;
     }
 
     public int getQuanlity() {
@@ -24,11 +22,7 @@ public class CartProductDB extends ProductDB {
     }
 
     public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+        return getPrice()*quanlity;
     }
 
     public long getId_cart() {
@@ -44,7 +38,6 @@ public class CartProductDB extends ProductDB {
         return "CartProductDB{" +
                 "id_cart=" + id_cart +
                 ", quanlity=" + quanlity +
-                ", totalPrice=" + totalPrice +
                 '}';
     }
 }

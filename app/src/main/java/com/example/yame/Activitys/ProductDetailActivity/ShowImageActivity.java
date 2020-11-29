@@ -38,10 +38,10 @@ public class ShowImageActivity extends AppCompatActivity {
     private void showImage(String[] urls) {
         List<SlideModel> slideModels = new ArrayList<>();
         for (int i = 0; i < urls.length; i++) {
-            slideModels.add(new SlideModel(urls[i], ScaleTypes.FIT));
+            slideModels.add(new SlideModel(urls[i], ScaleTypes.CENTER_INSIDE));
         }
 
-        imageSlider.setImageList(slideModels, ScaleTypes.CENTER_CROP);
+        imageSlider.setImageList(slideModels, ScaleTypes.FIT);
     }
 
 

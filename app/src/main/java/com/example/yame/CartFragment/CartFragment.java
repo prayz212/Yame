@@ -113,13 +113,13 @@ public class CartFragment extends Fragment implements CustomClickListener {
         config();
 
         //DEPLAY DE CHO ADAPTER XONG
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                calTotalPrice();
-            }
-        },10);
+//        Handler h = new Handler();
+//        h.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                calTotalPrice();
+//            }
+//        },10000);
     }
 
     private void getCartProducts() {
@@ -133,6 +133,7 @@ public class CartFragment extends Fragment implements CustomClickListener {
 
                     if (result != null && result.status == 200) {
                         buyProductList = result.data;
+                        calTotalPrice();
                         initData();
                     } else {
                         Log.e("test", "Server fail: " + result.message);

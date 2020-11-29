@@ -101,7 +101,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         List<SlideModel> slideModels = new ArrayList<>();
 
         for (int i = 0; i < products.size(); i++) {
-            slideModels.add(new SlideModel(products.get(i).getUrl(), ScaleTypes.FIT));
+            slideModels.add(new SlideModel(products.get(i).getUrl(), ScaleTypes.CENTER_CROP));
         }
 
         imageSlider.setImageList(slideModels, ScaleTypes.CENTER_CROP);

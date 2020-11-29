@@ -6,7 +6,6 @@
 
     <!-- Navigation Item names -->
     <string name="title_home">Trang chủ</string>
-    <string name="title_search">Search</string>
     <string name="title_more">Xem thêm</string>
     <string name="title_cart">Giỏ hàng</string>
 
@@ -18,8 +17,8 @@
     <string name="category_5">Phụ kiện</string>
 
     <!-- T-Shirt Item names -->
-    <string name="tshirt_1">Áo ngắn tay</string>
-    <string name="tshirt_2">Áo dài tay</string>
+    <string name="tshirt_1">Áo tay ngắn</string>
+    <string name="tshirt_2">Áo tay dài</string>
     <string name="tshirt_3">Áo có cổ</string>
     <string name="tshirt_4">Áo ba lỗ</string>
 
@@ -28,19 +27,16 @@
     <string name="coat_2">Hoodie</string>
 
     <!-- Dressshirt Item names -->
-    <string name="dshirt_1">Sơ mi nam</string>
-    <string name="dshirt_2">Sơ mi nữ</string>
     <string name="dshirt_3">Sơ mi tay dài</string>
     <string name="dshirt_4">Sơ mi tay ngắn</string>
 
     <!-- Trouser Item names -->
     <string name="trouser_1">Quần tây</string>
-    <string name="trouser_2">Quần jean</string>
     <string name="trouser_3">Quần short</string>
     <string name="trouser_4">Quần kaki</string>
 
     <!-- Accessories -->
-    <string name="accessory_1">Giày</string>
+    <string name="accessory_1">Giày sandal</string>
     <string name="accessory_2">Nón</string>
     <string name="accessory_3">Ví</string>
     <string name="accessory_4">Thắt lưng</string>

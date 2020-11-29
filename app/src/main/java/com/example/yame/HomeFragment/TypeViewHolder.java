@@ -49,12 +49,6 @@ public class TypeViewHolder extends ChildViewHolder {
                     break;
 
                 //Dressshirts
-                case 211:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_1), 211);
-                    break;
-                case 212:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_2), 212);
-                    break;
                 case 213:
                     startNewActivity(ProductActivity.class, v.getResources().getString(R.string.dshirt_3), 213);
                     break;
@@ -65,9 +59,6 @@ public class TypeViewHolder extends ChildViewHolder {
                 //Trousers
                 case 411:
                     startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_1), 411);
-                    break;
-                case 412:
-                    startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_2), 412);
                     break;
                 case 413:
                     startNewActivity(ProductActivity.class, v.getResources().getString(R.string.trouser_3), 413);

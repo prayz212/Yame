@@ -22,7 +22,7 @@ public class CartProductDB extends ProductDB {
     }
 
     public int getTotalPrice() {
-        return getPrice()*quanlity;
+        return getPrice() * quanlity;
     }
 
     public long getId_cart() {

@@ -63,8 +63,6 @@ public class HomeFragment extends Fragment {
 
         List<Type> dressshirts = new ArrayList<>();
 
-        dressshirts.add(new Type(getResources().getString(R.string.dshirt_1), 211));
-        dressshirts.add(new Type(getResources().getString(R.string.dshirt_2), 212));
         dressshirts.add(new Type(getResources().getString(R.string.dshirt_3), 213));
         dressshirts.add(new Type(getResources().getString(R.string.dshirt_4), 214));
 
@@ -73,7 +71,6 @@ public class HomeFragment extends Fragment {
         List<Type> trousers = new ArrayList<>();
 
         trousers.add(new Type(getResources().getString(R.string.trouser_1),411));
-        trousers.add(new Type(getResources().getString(R.string.trouser_2),412));
         trousers.add(new Type(getResources().getString(R.string.trouser_3),413));
         trousers.add(new Type(getResources().getString(R.string.trouser_4),414));
 

@@ -16,12 +16,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.yame.CartProductDB;
 import com.example.yame.ChangeCurrency;
 import com.example.yame.R;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 
 public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
 

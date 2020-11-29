@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 .setPositiveButton("Mở cài đặt", (dialog, which) -> {
                     startActivityForResult(new Intent(Settings.ACTION_WIRELESS_SETTINGS), 999);
                 })
+                .setCancelable(false)
                 .show();
     }
 

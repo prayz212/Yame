@@ -14,14 +14,18 @@
 
     <TextView
         android:id="@+id/tvItemsType"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="T-shirt"
+        android:maxLines="3"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgItems"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         android:layout_marginStart="14dp"
         android:layout_marginTop="20dp" />
 
